@@ -1,0 +1,17 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.nav {
+  background: $color-primary;
+  color: $color-light;
+  padding: 1rem;
+
+  @include tablet-up {
+    padding: 1.5rem 3rem;
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
