@@ -1,11 +1,16 @@
 @use 'variables' as *;
 
+@mixin mobile-only {
+  @media (max-width: $breakpoint-md - 1px) {
+    @content;
+  }
+}
+
 @mixin tablet-up {
   @media (min-width: $breakpoint-md) {
     @content;
   }
 }
-
 
 @mixin phone-up {
   @media (min-width: $breakpoint-sm) {

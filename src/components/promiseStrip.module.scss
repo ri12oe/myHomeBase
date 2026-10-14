@@ -1,0 +1,78 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.promiseStrip {
+  display: flex;
+  padding-block: 28px;
+  align-items: center;
+  gap: 32px;
+  align-self: stretch;
+  border-top: 1px solid $color-border;
+  border-bottom: 1px solid $color-border;
+  background-color: $color-background;
+
+  @include mobile-only {
+    width: calc(100% + 40px);
+    margin-inline: -20px;
+    padding-inline: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 12px;
+
+    .divider {
+      display: none;
+    }
+  }
+
+  @include tablet-up {
+    width: calc(100% + 80px);
+    margin-inline: -40px;
+    padding-inline: 40px;
+    display: flex;
+    gap: 32px;
+
+    .divider {
+      display: block;
+    }
+  }
+
+  @include desktop-up {
+    width: calc(100% + 240px);
+    margin-inline: -120px;
+    padding-inline: 120px;
+  }
+
+  .promise {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1 0 0;
+    .frame {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      flex: 1 0 0;
+      .frameTitle {
+        align-self: stretch;
+        color: $color-ink900;
+        font-family: $font-body;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -0.16px;
+      }
+      .frameText {
+        align-self: stretch;
+        color: $color-ink400;
+        font-family: $font-body;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+  }
+  .divider {
+    width: 1px;
+    height: 48px;
+    background-color: $color-border;
+  }
+}
