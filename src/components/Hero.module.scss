@@ -1,0 +1,125 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.heroTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+  .heroLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    .eyebrows {
+      display: flex;
+      padding: 7px 0;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      .eyebrowTitle {
+        color: $color-blue700;
+        font-family: $font-body;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+    span.heroTitle {
+      color: $color-ink900;
+      font-family: $font-main;
+      font-size: 136px;
+      font-weight: 400;
+      line-height: 125.12px;
+      letter-spacing: -4.08px;
+      .highlight {
+        color: $color-blue600Primary;
+        font-style: italic;
+      }
+    }
+  }
+  .heroRight {
+    display: flex;
+    padding-bottom: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    .callout {
+      width: 400px;
+      max-width: 100%;
+      color: $color-ink600;
+      font-family: $font-body;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 29px;
+    }
+    .emailCapture {
+      display: flex;
+      width: 400px;
+      height: 56px;
+      padding: 5px 5px 5px 16px;
+      align-items: center;
+      gap: 12px;
+      border-radius: 10px;
+      border: 1px solid $color-border;
+      background-color: $color-background;
+      &:focus-within {
+        outline: 2px solid $color-blue600Primary;
+        outline-offset: 2px;
+      }
+      input {
+        flex: 1 1 0;
+        min-width: 0;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        color: $color-ink900;
+        font-family: $font-body;
+        font-size: 16px;
+        font-weight: 400;
+        &::placeholder {
+          color: $color-ink400;
+          opacity: 1;
+        }
+      }
+      .buttonPrimary {
+        display: flex;
+        height: 52px;
+        padding: 0 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 7px;
+        background-color: $color-blue600Primary;
+        border: none;
+        cursor: pointer;
+        .buttonText {
+          color: #fff;
+          font-family: $font-body;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+    .microcopy {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .microSubContainer {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex: 0 0 auto;
+        .microText {
+          color: $color-ink500;
+          font-family: $font-body;
+          font-size: 14px;
+          font-weight: 500;
+          white-space: nowrap;
+        }
+        svg {
+            flex-shrink: 0;
+        }
+      }
+    }
+  }
+}
