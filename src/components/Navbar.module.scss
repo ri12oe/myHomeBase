@@ -2,16 +2,255 @@
 @use '../styles/mixins' as *;
 
 .nav {
-  background: $color-primary;
-  color: $color-light;
-  padding: 1rem;
+  position: relative;
+  display: flex;
+  height: 68px;
+  padding: 0 40px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-bottom: 1px solid #e3e8f0;
+  background-color: $color-background;
+
+  .menuToggle {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid $color-border;
+    background-color: $color-surface;
+    cursor: pointer;
+  }
+
+  .desktopContent {
+    display: none;
+  }
+
+  .menuContent {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 20px;
+    flex-direction: column;
+    align-self: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+    background-color: $color-background;
+    border-top: 1px solid $color-border;
+    .mobileLinks {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+
+      a {
+        display: flex;
+        padding: 18px 0;
+        align-items: center;
+        gap: 14px;
+        align-self: stretch;
+        border: 0 solid $color-border;
+        text-decoration: none;
+        .mobileLinkIndex {
+          color: $color-blue600Primary;
+          font-family: $font-body;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        .mobileLinkText {
+          flex: 1 0 0;
+          color: $color-ink900;
+          font-family: $font-main;
+          font-size: 40px;
+          font-weight: 400;
+          line-height: 40px;
+          letter-spacing: -0.8px;
+        }
+        .mobileLinkArrow {
+          color: $color-ink500;
+          font-family: $font-body;
+          font-size: 20px;
+          font-weight: 400;
+        }
+      }
+    }
+    .earlyAccessCard {
+      display: flex;
+      padding: 18px;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      gap: 12px;
+      border-radius: 14px;
+      background-color: $color-blue50;
+      border: 1px solid $color-blue100;
+      margin-top: 120px;
+      .frame {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .frameTitle {
+          color: $color-ink900;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+      .callout {
+        font-family: $font-body;
+        align-self: stretch;
+        color: $color-ink600;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20.3px;
+      }
+      input {
+        display: flex;
+        height: 52px;
+        padding: 0 16px;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 10px;
+        border: 1px solid $color-border;
+        background-color: $color-background;
+        color: $color-ink500;
+        font-family: $font-body;
+        font-size: 15px;
+        font-weight: 400;
+      }
+      .buttonPrimary {
+        height: 52px;
+        align-self: stretch;
+        border-radius: 10px;
+      }
+    }
+    footer {
+      display: flex;
+      padding-top: 20px;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-self: stretch;
+      .brandContact {
+        color: $color-ink500;
+        font-family: $font-body;
+        font-size: 13px;
+        font-weight: 400;
+      }
+    }
+  }
+
+  .menuContent.menuOpen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: $color-ink900;
+    font-family: $font-logo;
+    font-weight: 800;
+    letter-spacing: -0.41px;
+    font-size: 20.48px;
+    line-height: normal;
+    font-style: normal;
+
+    @include phone-up {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 17.92px;
+      letter-spacing: -0.358px;
+    }
+
+    .logoText {
+      span {
+        color: $color-blue600Primary;
+      }
+    }
+    .logoMark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 8.96px;
+      background: linear-gradient(
+        135deg,
+        $color-blue500 25%,
+        $color-blue700 75%
+      );
+      @include phone-up {
+        width: 28px;
+        height: 28px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 7.84px;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    a {
+      color: $color-ink600;
+      font-family: $font-body;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
 
   @include tablet-up {
-    padding: 1.5rem 3rem;
-  }
-}
+    height: 68px;
+    padding: 0 40px;
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
+    .menuToggle {
+      display: none;
+    }
+
+    .menuContent,
+    .menuContent.menuOpen {
+      display: none;
+    }
+
+    .desktopContent {
+      display: contents;
+    }
+
+    .links {
+      flex-direction: row;
+      gap: 32px;
+    }
+  }
+
+  .buttonPrimary {
+    display: flex;
+    height: 38px;
+    padding: 0 18px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: $color-blue600Primary;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    font-family: $font-body;
+    font-size: 14px;
+    font-weight: 600;
+  }
 }

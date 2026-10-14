@@ -5,3 +5,10 @@
     @content;
   }
 }
+
+
+@mixin phone-up {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}

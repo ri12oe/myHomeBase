@@ -8,8 +8,18 @@
   padding: 0;
 }
 
+#root {
+  width: 100%;
+}
+
 body {
-  font-family: $font-main;
-  background: $color-light;
-  color: $color-dark;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: $color-background;
+}
+
+main {
+  padding: 120px;
 }
