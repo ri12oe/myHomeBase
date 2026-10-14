@@ -1,7 +1,45 @@
-$color-primary: #2f5d50;
-$color-dark: #1a1a1a;
-$color-light: #f5f5f0;
+// Colors
 
-$font-main: 'Inter', sans-serif;
+// Blue Colors
+$color-blue600Primary: #2563EB;
+$color-blue700: #1D4ED8;
+$color-blue500: #3B82F6;
+$color-blue300: #93B8FD;
+$color-blue200: #BFD5FE;
+$color-blue100: #DBE8FE;
+$color-blue50: #EFF5FF;
+
+// Ink & neutrals colors
+$color-ink900: #0B1B33; 
+$color-ink600: #475569;
+$color-ink500: #64748B;
+$color-ink400: #94A3B8;
+$color-borderStrong: #D5DCE6;
+$color-border: #E3E8F0;
+$color-surfaceMuted: #F1F4F9;
+
+
+// Background colors
+$color-background: #F7F9FC;
+$color-surface: #FFFFFF;
+
+// Text on dark bands
+$color-onDark1: #FFFFFF;
+$color-onDark2: #A9B6C9;
+$color-onDark3: #7D8BA3;
+
+// Accent & semantic
+$color-amber500: #F59E0B;
+$color-amber100: #FEF3C7;
+$color-amber700: #B45309;
+$color-success500: #10B981;
+$color-success50: #ECFDF5;
+$color-success700: #047857;
+$color-error400: #F87171;
+
+// Fonts Family
+$font-main: 'Instrument Serif', sans-serif;
+$font-logo: 'Plus Jakarta Sans', sans-serif;
+$font-body: 'Inter', sans-serif;
 
 $breakpoint-md: 768px;
