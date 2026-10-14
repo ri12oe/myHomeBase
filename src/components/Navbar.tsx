@@ -3,7 +3,7 @@ import HomeIcon from './HomeIcon'
 import { useId, useRef, useState } from 'react'
 import MenuIcon from './menuIcon'
 import GreenDot from './GreenDot'
-
+import XMarkIcon from './xMarkIcon'
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuId = useId()
@@ -39,7 +39,11 @@ export default function Navbar() {
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((previous) => !previous)}
       >
-        <MenuIcon />
+        {isMenuOpen ? (
+          <XMarkIcon  />
+        ) : (
+          <MenuIcon />
+        )}
       </button>
 
       <div className={styles.desktopContent}>
@@ -105,7 +109,7 @@ export default function Navbar() {
             className={styles.buttonPrimary}
             onClick={closeMenu}
           >
-            Get early access  →
+            Get early access →
           </button>
         </div>
         <footer>

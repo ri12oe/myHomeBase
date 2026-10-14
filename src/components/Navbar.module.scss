@@ -22,6 +22,9 @@
     border: 1px solid $color-border;
     background-color: $color-surface;
     cursor: pointer;
+    &[aria-expanded="true"] {
+      background-color: $color-ink900;
+    }
   }
 
   .desktopContent {
@@ -54,7 +57,7 @@
         align-items: center;
         gap: 14px;
         align-self: stretch;
-        border: 0 solid $color-border;
+        border-bottom: 1px solid $color-border;
         text-decoration: none;
         .mobileLinkIndex {
           color: $color-blue600Primary;
