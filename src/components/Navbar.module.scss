@@ -22,7 +22,7 @@
     border: 1px solid $color-border;
     background-color: $color-surface;
     cursor: pointer;
-    &[aria-expanded="true"] {
+    &[aria-expanded='true'] {
       background-color: $color-ink900;
     }
   }
@@ -33,16 +33,16 @@
 
   .menuContent {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 68px;
     left: 0;
     right: 0;
+    bottom: 0;
     z-index: 10;
     padding: 20px;
     flex-direction: column;
-    align-self: flex-start;
-    flex: 1 0 0;
-    align-self: stretch;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     background-color: $color-background;
     border-top: 1px solid $color-border;
     .mobileLinks {
@@ -92,7 +92,7 @@
       border-radius: 14px;
       background-color: $color-blue50;
       border: 1px solid $color-blue100;
-      margin-top: 120px;
+      margin-top: auto;
       .frame {
         display: flex;
         align-items: center;

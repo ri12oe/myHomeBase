@@ -3,6 +3,7 @@ import GreenDot from './GreenDot'
 import MailIcon from './MailIcon'
 import ArrowRightIcon from './ArrowRightIcon'
 import CheckIcon from './CheckIcon'
+import ShowcasePanel from './ShowcasePanel'
 export default function Hero() {
   return (
     <main>
@@ -16,10 +17,10 @@ export default function Hero() {
             />
             <span className={styles.eyebrowTitle}>Early access now open</span>
           </div>
-          <span className={styles.heroTitle}>
+          <h1 className={styles.heroTitle}>
             Know the price <span className={styles.highlight}>before</span> you
             book.
-          </span>
+          </h1>
         </div>
         <div className={styles.heroRight}>
           <p className={styles.callout}>
@@ -27,19 +28,24 @@ export default function Hero() {
             care and more — then book in a few taps. No sales calls. No sharing
             your number with a dozen companies.
           </p>
-          <div className={styles.emailCapture}>
-            <MailIcon />
-            <input
-              type="email"
-              aria-label="Email address"
-              placeholder="Enter your email"
-              required
-            />
-            <button  type="button"  className={styles.buttonPrimary}>
-                <span className={styles.buttonText}>Get early access</span>
-                <ArrowRightIcon  color="#fff" />
+          <form
+            className={styles.emailCapture}
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <label className={styles.field}>
+              <MailIcon />
+              <input
+                type="email"
+                aria-label="Email address"
+                placeholder="Enter your email"
+                required
+              />
+            </label>
+            <button type="submit" className={styles.buttonPrimary}>
+              <span className={styles.buttonText}>Get early access</span>
+              <ArrowRightIcon color="#fff" />
             </button>
-          </div>
+          </form>
           <div className={styles.microcopy}>
             <div className={styles.microSubContainer}>
               <CheckIcon color="#16B981" />
@@ -56,7 +62,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <div className={styles.showcasePanel}></div>
+      <ShowcasePanel />
     </main>
   )
 }

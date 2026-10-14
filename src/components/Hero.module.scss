@@ -1,22 +1,42 @@
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
+// Mobile-first: base styles are the phone layout (stacked, full width).
+// `desktop-up` (1024px+) switches to the side-by-side layout.
+
 .heroTop {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  align-self: stretch;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  margin-bottom: 32px;
+
+  @include desktop-up {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 64px;
+  }
+
   .heroLeft {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
+    gap: 20px;
+
+    @include desktop-up {
+      flex: 1 1 auto;
+      min-width: 0;
+      gap: 28px;
+    }
+
     .eyebrows {
       display: flex;
       padding: 7px 0;
       align-items: center;
       gap: 8px;
-      border-radius: 999px;
+
       .eyebrowTitle {
         color: $color-blue700;
         font-family: $font-body;
@@ -24,63 +44,100 @@
         font-weight: 600;
       }
     }
-    span.heroTitle {
+
+    .heroTitle {
       color: $color-ink900;
       font-family: $font-main;
-      font-size: 136px;
+      // Phones/tablets: 56px → 96px. Desktop (side-by-side): scales to 136px,
+      // and 8.4vw keeps it on two lines from ~1280px up.
+      font-size: clamp(56px, 12.5vw, 96px);
+
+      @include desktop-up {
+        font-size: clamp(80px, 8.4vw, 136px);
+      }
       font-weight: 400;
-      line-height: 125.12px;
-      letter-spacing: -4.08px;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+
       .highlight {
         color: $color-blue600Primary;
         font-style: italic;
       }
     }
   }
+
   .heroRight {
     display: flex;
-    padding-bottom: 14px;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
+    align-items: stretch;
+    gap: 20px;
+
+    @include desktop-up {
+      flex: 0 0 420px;
+      min-width: 0;
+      gap: 24px;
+      padding-bottom: 14px;
+    }
+
     .callout {
-      width: 400px;
-      max-width: 100%;
       color: $color-ink600;
       font-family: $font-body;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 400;
-      line-height: 29px;
+      line-height: 26px;
+
+      @include desktop-up {
+        font-size: 18px;
+        line-height: 29px;
+      }
     }
+
+    // Phone: bordered input on top, full-width button below.
+    // Desktop: one bordered pill with the button inside.
     .emailCapture {
       display: flex;
-      width: 400px;
-      height: 56px;
-      padding: 5px 5px 5px 16px;
-      align-items: center;
-      gap: 12px;
-      border-radius: 10px;
-      border: 1px solid $color-border;
-      background-color: $color-background;
-      &:focus-within {
-        outline: 2px solid $color-blue600Primary;
-        outline-offset: 2px;
+      flex-direction: column;
+      gap: 10px;
+
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        height: 52px;
+        padding: 0 16px;
+        border: 1px solid $color-border;
+        border-radius: 10px;
+        background-color: $color-surface;
+        cursor: text;
+
+        &:focus-within {
+          outline: 2px solid $color-blue600Primary;
+          outline-offset: 2px;
+        }
+
+        svg {
+          flex-shrink: 0;
+        }
       }
+
       input {
         flex: 1 1 0;
+        width: 100%; // drop the browser's default ~20-character width
         min-width: 0;
         border: none;
         background-color: transparent;
         outline: none;
         color: $color-ink900;
         font-family: $font-body;
-        font-size: 16px;
+        font-size: 16px; // keep ≥16px so iOS Safari doesn't zoom on focus
         font-weight: 400;
+
         &::placeholder {
           color: $color-ink400;
           opacity: 1;
         }
       }
+
       .buttonPrimary {
         display: flex;
         height: 52px;
@@ -88,37 +145,95 @@
         justify-content: center;
         align-items: center;
         gap: 8px;
-        border-radius: 7px;
-        background-color: $color-blue600Primary;
         border: none;
+        border-radius: 10px;
+        background-color: $color-blue600Primary;
         cursor: pointer;
+
         .buttonText {
           color: #fff;
           font-family: $font-body;
           font-size: 16px;
           font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+
+      @include desktop-up {
+        flex-direction: row;
+        align-items: center;
+        height: 56px;
+        padding: 5px;
+        gap: 6px;
+        border: 1px solid $color-border;
+        border-radius: 10px;
+        background-color: $color-background;
+
+        &:focus-within {
+          outline: 2px solid $color-blue600Primary;
+          outline-offset: 2px;
+        }
+
+        .field {
+          flex: 1;
+          min-width: 0;
+          height: auto;
+          padding: 0 0 0 11px;
+          border: 0;
+          background: none;
+
+          &:focus-within {
+            outline: none;
+          }
+        }
+
+        .buttonPrimary {
+          height: 100%;
+          border-radius: 7px;
         }
       }
     }
+
     .microcopy {
       display: flex;
+      flex-wrap: nowrap;
       align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 4px;
+
+      @include desktop-up {
+        gap: 20px;
+      }
+
       .microSubContainer {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 3px;
         flex: 0 0 auto;
+
         .microText {
           color: $color-ink500;
           font-family: $font-body;
-          font-size: 14px;
+          font-size: 11px;
           font-weight: 500;
           white-space: nowrap;
+
+          @include desktop-up {
+            font-size: 14px;
+          }
         }
+
         svg {
-            flex-shrink: 0;
+          width: 12px;
+          height: 12px;
+          flex-shrink: 0;
         }
+      }
+    }
+
+    @media (max-width: 360px) {
+      .microText {
+        font-size: 10px;
       }
     }
   }

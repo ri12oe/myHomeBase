@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss'
 import HomeIcon from './HomeIcon'
-import { useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import MenuIcon from './menuIcon'
 import GreenDot from './GreenDot'
 import XMarkIcon from './xMarkIcon'
@@ -8,6 +8,35 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuId = useId()
   const toggleRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (!isMenuOpen) return
+
+    const mobileQuery = window.matchMedia('(max-width: 767px)')
+    const root = document.documentElement
+    const body = document.body
+    const previousRootOverflow = root.style.overflow
+    const previousBodyOverflow = body.style.overflow
+
+    const updateScrollLock = () => {
+      root.style.overflow = mobileQuery.matches
+        ? 'hidden'
+        : previousRootOverflow
+      body.style.overflow = mobileQuery.matches
+        ? 'hidden'
+        : previousBodyOverflow
+    }
+
+    updateScrollLock()
+    mobileQuery.addEventListener('change', updateScrollLock)
+
+    return () => {
+      mobileQuery.removeEventListener('change', updateScrollLock)
+      root.style.overflow = previousRootOverflow
+      body.style.overflow = previousBodyOverflow
+    }
+  }, [isMenuOpen])
+
   function closeMenu() {
     setIsMenuOpen(false)
   }
@@ -39,11 +68,7 @@ export default function Navbar() {
         aria-expanded={isMenuOpen}
         onClick={() => setIsMenuOpen((previous) => !previous)}
       >
-        {isMenuOpen ? (
-          <XMarkIcon  />
-        ) : (
-          <MenuIcon />
-        )}
+        {isMenuOpen ? <XMarkIcon /> : <MenuIcon />}
       </button>
 
       <div className={styles.desktopContent}>
