@@ -5,7 +5,7 @@ export default function Features() {
   return (
     <main className={style.featureMain}>
       <HeaderRow
-        labelNumber="(03)"
+        labelNumber="(04)"
         labelText="Features"
         title="Everything you need to hire with confidence."
         description="Built around the three things quote sites get wrong: the price, your privacy, and what happens after you book."

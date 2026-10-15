@@ -1,0 +1,283 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.servicesMain {
+  display: flex;
+  padding: 112px 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  align-self: stretch;
+  background-color: #fff;
+  .serviceIndex {
+    display: flex;
+    align-items: flex-start;
+    gap: 72px;
+    align-self: stretch;
+    .categories {
+      display: flex;
+      width: 460px;
+      flex-direction: column;
+      align-items: flex-start;
+      .category {
+        display: flex;
+        width: 100%;
+        padding: 22px 0;
+        align-items: center;
+        gap: 20px;
+        align-self: stretch;
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        border-top: 1px solid $color-border;
+        background: transparent;
+        font: inherit;
+        text-align: left;
+        cursor: pointer;
+
+        &:focus-visible {
+          outline: 2px solid $color-blue600Primary;
+          outline-offset: 3px;
+        }
+
+        &:hover .categoryName {
+          color: $color-ink900;
+        }
+
+        &.selectedCategory .categoryName {
+          color: $color-ink900;
+        }
+
+        .categoryLabel {
+          color: $color-ink400;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 500;
+          &.highlight {
+            color: $color-blue600Primary;
+          }
+        }
+        .categoryName {
+          flex: 1 0 0;
+          color: $color-ink400;
+          font-family: $font-main;
+          font-weight: 400;
+          line-height: 40px;
+          letter-spacing: -0.6px;
+          font-size: 40px;
+          &.highlightText {
+            color: $color-ink900;
+          }
+        }
+        .servicesNumber {
+          color: $color-ink400;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+    }
+    .categoriesDetail {
+      display: flex;
+      padding: 32px;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1 0 0;
+      border-radius: 16px;
+      border: 1px solid $color-border;
+      background-color: $color-background;
+      .detailFrameTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        align-self: stretch;
+        .detailFrameInner {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-self: flex-start;
+          .detailLabel {
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 20px;
+            font-weight: 600;
+          }
+          .detailDescription {
+            color: $color-ink500;
+            font-family: $font-body;
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+        .detailNumberContent {
+          color: $color-ink400;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+      .detailFrameMiddle {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        align-self: stretch;
+        .detailFrameMiddleInner {
+          display: flex;
+          padding: 12px 18px 12px 12px;
+          align-items: center;
+          gap: 14px;
+          align-self: stretch;
+          border-radius: 12px;
+          border: 1px solid $color-border;
+          background-color: #fff;
+          .IconTile {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background-color: $color-surfaceMuted;
+          }
+          .detailContent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            flex: 1 0 0;
+            .detailContentLabel {
+              color: $color-ink900;
+              font-family: $font-body;
+              font-size: 15px;
+              font-weight: 600;
+            }
+            .detailContentDescription {
+              color: $color-ink500;
+              font-family: $font-body;
+              font-size: 13px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+      .detailFrameBottom {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        .detailFrameBottomLabel {
+          color: $color-ink600;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .detailFramePill {
+          display: flex;
+          padding: 4px 10px;
+          align-items: flex-start;
+          border-radius: 6px;
+          border: 1px solid $color-border;
+          background-color: #fff;
+          .detailFramePillLabel {
+            color: $color-ink600;
+            font-family: $font-body;
+            font-size: 12px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+  .moreLink {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    .moreLinkLabel {
+      color: $color-blue600Primary;
+      font-family: $font-body;
+      font-size: 15px;
+      font-weight: 600;
+    }
+  }
+
+  @include mobile-only {
+    padding: 64px 20px;
+    gap: 40px;
+
+    .serviceIndex {
+      width: 100%;
+      flex-direction: column;
+      gap: 24px;
+
+      .categories {
+        width: 100%;
+
+        .category {
+          gap: 12px;
+          padding: 16px 0;
+
+          .categoryName {
+            min-width: 0;
+            flex: 1 1 auto;
+            font-size: 26px;
+            line-height: 1.15;
+            letter-spacing: 0;
+          }
+
+          .servicesNumber {
+            flex-shrink: 0;
+            font-size: 11px;
+          }
+        }
+      }
+
+      .categoriesDetail {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px;
+        gap: 16px;
+
+        .detailFrameTop {
+          align-items: flex-start;
+          gap: 12px;
+
+          .detailFrameInner {
+            min-width: 0;
+
+            .detailDescription {
+              line-height: 1.5;
+            }
+          }
+
+          .detailNumberContent {
+            flex-shrink: 0;
+          }
+        }
+
+        .detailFrameMiddle .detailFrameMiddleInner {
+          padding: 10px;
+          gap: 12px;
+
+          .detailContent {
+            min-width: 0;
+          }
+        }
+
+        .detailFrameBottom {
+          flex-wrap: wrap;
+        }
+      }
+    }
+
+    .moreLink {
+      align-items: flex-start;
+
+      .moreLinkLabel {
+        min-width: 0;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+    }
+  }
+}
