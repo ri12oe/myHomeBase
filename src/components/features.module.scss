@@ -1,0 +1,634 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.featureMain {
+  display: flex;
+  padding: 112px 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 72px;
+  align-self: stretch;
+  background-color: $color-ink900;
+  .bento {
+    display: flex;
+    width: 1200px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    .bentoTop {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      align-self: stretch;
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        flex: 1 0 0;
+        .transparentPricing {
+          display: flex;
+          padding: 32px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+          align-self: stretch;
+          border-radius: 24px;
+          background-color: #fff;
+          box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+          .transparentPricingFrame {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            align-self: stretch;
+            .transparentPricingInnerFrame {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 20px;
+              flex: 1 0 0;
+              .transparentPricingInnerInnerFrame {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                align-self: stretch;
+                .transparentPricingTitle {
+                  align-self: stretch;
+                  color: $color-ink900;
+                  font-family: $font-body;
+                  font-size: 21px;
+                  font-weight: 600;
+                  letter-spacing: -0.21px;
+                }
+                .transparentPricingDescription {
+                  align-self: stretch;
+                  color: $color-ink600;
+                  font-family: $font-body;
+                  font-size: 15.5px;
+                  font-weight: 400;
+                  line-height: 25px;
+                }
+              }
+            }
+            .priceComparison {
+              display: flex;
+              width: 340px;
+              padding: 20px;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 12px;
+              border-radius: 18px;
+              border: 1px solid $color-border;
+              background-color: $color-background;
+              .priceComparisonTopFrame {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                align-self: stretch;
+                .subTitle {
+                  color: $color-ink900;
+                  font-family: $font-body;
+                  font-size: 13px;
+                  font-weight: 600;
+                }
+                .quote {
+                  color: $color-ink500;
+                  font-family: $font-body;
+                  font-size: 12px;
+                  font-weight: 500;
+                }
+              }
+              .priceComparisonFrame {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                align-self: stretch;
+                .priceComparisonInnerFrame {
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  align-self: stretch;
+                  .priceTitle {
+                    flex: 1 0 0;
+                    color: $color-ink600;
+                    font-family: $font-body;
+                    font-size: 12.5px;
+                    font-weight: 500;
+                  }
+                  .pill {
+                    display: flex;
+                    padding: 2px 7px;
+                    align-items: center;
+                    border-radius: 999px;
+                    background-color: $color-amber100;
+                    .pillText {
+                      color: $color-amber700;
+                      font-family: $font-body;
+                      font-size: 10px;
+                      font-weight: 700;
+                    }
+                  }
+                  .price {
+                    color: $color-ink900;
+                    font-family: $font-body;
+                    font-size: 14px;
+                    font-weight: 600;
+                    letter-spacing: -0.14px;
+                  }
+                }
+                .track {
+                  display: flex;
+                  height: 10px;
+                  align-items: center;
+                  align-self: stretch;
+                  border-radius: 5px;
+                  background-color: $color-blue100;
+                  .bar {
+                    width: 186px;
+                    height: 10px;
+                    border-radius: 5px;
+                    background-color: $color-blue300;
+                    &.highlighted {
+                      background-color: $color-amber500;
+                    }
+                    &.long {
+                      width: 234px;
+                      height: 10px;
+                    }
+                    &.longer {
+                      width: 285px;
+                      height: 10px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .bentoMiddle {
+          display: flex;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+          .featuresBlock {
+            display: flex;
+            padding: 32px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            flex: 1 0 0;
+            align-self: stretch;
+            border-radius: 24px;
+            background-color: #fff;
+            box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+            .verifiedFrame {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 8px;
+              align-self: stretch;
+              .verifiedText {
+                align-self: stretch;
+                color: $color-ink900;
+                font-family: $font-body;
+                font-size: 21px;
+                font-weight: 600;
+                letter-spacing: -0.21px;
+              }
+              .verifiedDesp {
+                align-self: stretch;
+                color: $color-ink600;
+                font-family: $font-body;
+                font-size: 15.5px;
+                font-weight: 400;
+                line-height: 25px;
+              }
+            }
+            .verifiedBottomFrame {
+              display: flex;
+              align-items: flex-start;
+              gap: 8px;
+              align-self: stretch;
+              flex-wrap: wrap;
+              .pillverifted {
+                display: flex;
+                padding: 7px 12px 7px 10px;
+                align-items: center;
+                gap: 6px;
+                border-radius: 999px;
+                background-color: $color-success50;
+                .pillTextVeri {
+                  color: $color-success700;
+                  font-family: $font-body;
+                  font-size: 13px;
+                  font-weight: 600;
+                }
+              }
+            }
+            .messageBlock {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 8px;
+              align-self: stretch;
+              .reciverFrame {
+                display: flex;
+                padding: 9px 12px;
+                align-items: center;
+                gap: 8px;
+                border-radius: 14px 14px 14px 4px;
+                background-color: $color-surfaceMuted;
+                .reciverText {
+                  color: $color-ink600;
+                  font-family: $font-body;
+                  font-size: 12.5px;
+                  font-weight: 500;
+                }
+              }
+              .giverFramer {
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-start;
+                align-self: stretch;
+                .giverInnerFrame {
+                  display: flex;
+                  padding: 9px 12px;
+                  align-items: flex-start;
+                  border-radius: 14px 14px 4px 14px;
+                  background-color: $color-blue600Primary;
+                  color: #fff;
+                  font-family: $font-body;
+                  font-size: 12.5px;
+                  font-weight: 400;
+                }
+              }
+            }
+          }
+        }
+      }
+      .privacy {
+        display: flex;
+        width: 384px;
+        padding: 32px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        align-self: stretch;
+        border-radius: 24px;
+        background: linear-gradient(180deg, #fff 0%, #eff5ff 100%);
+        box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+        .verifiedFrame {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+          .verifiedText {
+            align-self: stretch;
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 21px;
+            font-weight: 600;
+            letter-spacing: -0.21px;
+          }
+          .verifiedDesp {
+            align-self: stretch;
+            color: $color-ink600;
+            font-family: $font-body;
+            font-size: 15.5px;
+            font-weight: 400;
+            line-height: 25px;
+          }
+        }
+        .contactCard {
+          display: flex;
+          padding: 18px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+          align-self: stretch;
+          border-radius: 18px;
+          border: 1px solid $color-border;
+          background-color: #fff;
+          box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+          .contactCardText {
+            color: $color-ink500;
+            font-family: $font-body;
+            font-size: 13px;
+            font-weight: 600;
+          }
+          .contactFrame {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            align-self: stretch;
+            .contactCardInfo {
+              flex: 1 0 0;
+              font-family: $font-body;
+              font-size: 15px;
+              font-weight: 600;
+              letter-spacing: 0.6px;
+            }
+          }
+          .contactPill {
+            display: flex;
+            padding: 7px 12px 7px 10px;
+            align-items: center;
+            gap: 6px;
+            border-radius: 999px;
+            background-color: $color-blue100;
+            .contactPillText {
+              color: $color-blue700;
+              font-family: $font-body;
+              font-size: 13px;
+              font-weight: 600;
+            }
+          }
+        }
+        .callout {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+          align-self: stretch;
+          margin-top: 60px;
+          .calloutLabel {
+            color: $color-blue600Primary;
+            font-family: $font-main;
+            font-size: 84px;
+            font-weight: 400;
+            line-height: 85.68px;
+            letter-spacing: -1.26px;
+          }
+          .calloutText {
+            align-self: stretch;
+            color: $color-ink600;
+            font-family: $font-body;
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    .featureJobTracking {
+      display: flex;
+      padding: 32px;
+      align-items: center;
+      gap: 48px;
+      align-self: stretch;
+      border-radius: 24px;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+      .featureJobFrame {
+        display: flex;
+        width: 340px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        .verifiedFrame {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+          align-self: stretch;
+          .verifiedText {
+            align-self: stretch;
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 21px;
+            font-weight: 600;
+            letter-spacing: -0.21px;
+          }
+          .verifiedDesp {
+            align-self: stretch;
+            color: $color-ink600;
+            font-family: $font-body;
+            font-size: 15.5px;
+            font-weight: 400;
+            line-height: 25px;
+          }
+        }
+      }
+      .timeline {
+        display: flex;
+        align-items: center;
+        flex: 1 0 0;
+        .timelineFrame {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          flex: 1 0 0;
+          .mobileCompleteDot {
+            display: none;
+          }
+          .desktopTimelineText {
+            display: inline;
+          }
+          .mobileTimelineText {
+            display: none;
+          }
+          .timelineInnerFrame {
+            display: flex;
+            height: 36px;
+            align-items: center;
+            align-self: stretch;
+            .line {
+              height: 3px;
+              flex: 1 0 0;
+              &.bluelined {
+                background-color: $color-blue600Primary;
+              }
+              &.blur {
+                background-color: $color-border;
+              }
+            }
+            .dot {
+              display: flex;
+              width: 36px;
+              height: 36px;
+              justify-content: center;
+              align-items: center;
+              border-radius: 999px;
+              border: 2.5px solid $color-blue600Primary;
+              background-color: #fff;
+              box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25);
+              &.completedDot {
+                border: 0;
+                background-color: $color-blue600Primary;
+                box-shadow: none;
+              }
+              &.blurDot {
+                border: 1.5px solid $color-border;
+                background-color: #fff;
+                box-shadow: none;
+              }
+            }
+          }
+          .timelineLabel {
+            color: $color-ink900;
+            font-family: $font-body;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            &.blurText {
+              color: $color-ink500;
+              font-weight: 400;
+            }
+          }
+          .timelineTime {
+            color: $color-ink500;
+            text-align: center;
+            font-family: $font-body;
+            font-size: 12px;
+            font-weight: 400;
+            &.highlightedText {
+              color: $color-blue600Primary;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include mobile-only {
+    padding: 64px 20px;
+    gap: 40px;
+
+    .bento {
+      width: 100%;
+      gap: 16px;
+
+      .bentoTop {
+        width: 100%;
+        flex-direction: column;
+        gap: 16px;
+
+        .left {
+          width: 100%;
+          min-width: 0;
+          flex: 1 1 auto;
+          gap: 16px;
+
+          .transparentPricing {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+
+            .transparentPricingFrame {
+              flex-direction: column;
+              align-items: stretch;
+              gap: 24px;
+
+              .transparentPricingInnerFrame {
+                width: 100%;
+                flex: 0 0 auto;
+              }
+
+              .priceComparison {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 16px;
+
+                .priceComparisonFrame .track .bar {
+                  max-width: 100%;
+                }
+              }
+            }
+          }
+
+          .bentoMiddle {
+            flex-direction: column;
+            gap: 16px;
+
+            .featuresBlock {
+              width: 100%;
+              box-sizing: border-box;
+              flex: 1 1 auto;
+              padding: 24px;
+            }
+          }
+        }
+
+        .privacy {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 24px;
+
+          .callout {
+            margin-top: 8px;
+
+            .calloutLabel {
+              font-size: 68px;
+              line-height: 1;
+              letter-spacing: -1px;
+            }
+          }
+        }
+      }
+
+      .featureJobTracking {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 24px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+
+        .featureJobFrame {
+          width: 100%;
+        }
+
+        .timeline {
+          width: 100%;
+          flex: 0 0 auto;
+          overflow: visible;
+          padding: 6px 0 0;
+
+          .timelineFrame {
+            min-width: 0;
+            flex: 1 1 0;
+
+            .mobileCompleteDot {
+              display: flex;
+            }
+
+            .timelineLabel {
+              max-width: 100%;
+              font-size: 10px;
+              white-space: nowrap;
+            }
+
+            .timelineTime {
+              display: none;
+            }
+
+            &:nth-child(3) {
+              .desktopTimelineText {
+                display: none;
+              }
+
+              .mobileTimelineText {
+                display: inline;
+              }
+            }
+
+            &:nth-child(4),
+            &:nth-child(5) {
+              .desktopTimelineText {
+                display: none;
+              }
+
+              .mobileTimelineText {
+                display: inline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

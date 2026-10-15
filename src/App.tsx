@@ -4,6 +4,7 @@ import PromiseStrip from './components/promisStrip'
 import Statement from './components/statement'
 import Comparsion from './components/comparsion'
 import HowItWorks from './components/howItWorks'
+import Features from './components/features' 
 export default function App() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function App() {
       <Statement />
       <Comparsion />
       <HowItWorks />
+      <Features />
     </>
   )
 }

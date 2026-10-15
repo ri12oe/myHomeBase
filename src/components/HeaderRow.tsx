@@ -5,6 +5,7 @@ type HeaderRowProps = {
   labelText: string
   title: string
   description: string
+  colorTheme?: 'default' | 'dark'
 }
 
 export default function HeaderRow({
@@ -12,9 +13,14 @@ export default function HeaderRow({
   labelText,
   title,
   description,
+  colorTheme = 'default',
 }: HeaderRowProps) {
   return (
-    <div className={styles.headerRow}>
+    <div
+      className={`${styles.headerRow} ${
+        colorTheme === 'dark' ? styles.dark : ''
+      }`}
+    >
       <div className={styles.title}>
         <label>
           <span className={styles.labelNumber}>{labelNumber}</span>

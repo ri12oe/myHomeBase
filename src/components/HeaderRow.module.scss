@@ -60,6 +60,24 @@
     line-height: 24px;
   }
 
+  &.dark {
+    .title label .labelNumber {
+      color: $color-blue300;
+    }
+
+    .title label .labelText {
+      color: $color-blue200;
+    }
+
+    .title .sectionTitle {
+      color: $color-onDark1;
+    }
+
+    .headerSub {
+      color: $color-onDark2;
+    }
+  }
+
   @include tablet-up {
     .title .sectionTitle {
       font-size: 52px;
