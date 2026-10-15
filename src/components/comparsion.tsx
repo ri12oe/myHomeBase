@@ -1,23 +1,16 @@
 import styles from './comparsion.module.scss'
 import HomeIcon from './HomeIcon'
+import HeaderRow from './HeaderRow'
+
 export default function Comparsion() {
   return (
     <main className={styles.comparsionMain}>
-      <div className={styles.headerRow}>
-        <div className={styles.title}>
-          <label>
-            <span className={styles.labelNumber}>(02)</span>
-            <span className={styles.labelText}>Why MyHomeBase</span>
-          </label>
-          <h2 className={styles.sectionTitle}>
-            Getting a quote shouldn’t cost you your peace and quiet.
-          </h2>
-        </div>
-        <span className={styles.headerSub}>
-          Most quote sites sell your request to as many companies as they can.
-          We built the opposite.
-        </span>
-      </div>
+      <HeaderRow
+        labelNumber="(02)"
+        labelText="Why MyHomeBase"
+        title="Getting a quote shouldn’t cost you your peace and quiet."
+        description="Most quote sites sell your request to as many companies as they can. We built the opposite."
+      />
       <div className={styles.comparisonTable}>
         <div className={styles.columnBefore}>
           <div className={styles.columnTopFrame}>

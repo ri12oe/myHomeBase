@@ -1,0 +1,299 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.howitWorksMain {
+  padding-top: 0;
+  padding: 112px 120px;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  gap: 72px;
+  align-self: stretch;
+  background-color: #fff;
+  .steps {
+    display: flex;
+    width: 1200px;
+    align-items: flex-start;
+    gap: 24px;
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 1 0 0;
+      .Illustration {
+        display: flex;
+        height: 196px;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 20px;
+        background-color: $color-blue50;
+        .IllustrationFrame {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+          align-self: stretch;
+          .chip {
+            display: flex;
+            padding: 8px 14px;
+            justify-content: center;
+            align-items: center;
+            grid-column: span 2;
+            border-radius: 999px;
+            border: 1px solid $color-border;
+            background-color: #fff;
+            &.highlightedChip {
+              background-color: $color-blue600Primary;
+              color: #fff;
+            }
+            &:last-child {
+              grid-column: 2 / span 2;
+            }
+            .chipText {
+              color: $color-ink600;
+              font-family: $font-body;
+              font-size: 12.5px;
+              font-weight: 600;
+              text-align: center;
+              white-space: nowrap;
+              &.highlightedChipText {
+                color: #fff;
+              }
+            }
+          }
+        }
+        .step2Frame {
+          display: flex;
+          padding: 9px 12px;
+          align-items: center;
+          gap: 8px;
+          align-self: stretch;
+          border-radius: 12px;
+          border: 1px solid $color-border;
+          background-color: #fff;
+          &.highlightedStep2Frame {
+            border: 1.5px solid $color-blue600Primary;
+          }
+          .chipText {
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 12.5px;
+            flex: 1 0 0;
+            font-weight: 600;
+          }
+          .pill {
+            display: flex;
+            padding: 2px 7px;
+            align-items: flex-start;
+            border-radius: 999px;
+            background-color: $color-amber100;
+            .pillText {
+              color: $color-amber700;
+              font-family: $font-body;
+              font-size: 10px;
+              font-weight: 700;
+            }
+          }
+          .priceText {
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.15px;
+          }
+        }
+      }
+      .Illustration2 {
+        display: flex;
+        height: 196px;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 20px;
+        background-color: $color-blue50;
+        .reciveFrame {
+          display: flex;
+          padding: 9px 12px;
+          align-items: flex-start;
+          border-radius: 14px 14px 14px 4px;
+          border: 1px solid $color-border;
+          background-color: #fff;
+          .reciveFrameText {
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 12.5px;
+            font-weight: 400;
+            text-align: left;
+          }
+        }
+        .GiverFrame {
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-start;
+          align-self: stretch;
+          .GiverInnerFrame {
+            display: flex;
+            padding: 9px 12px;
+            align-items: flex-start;
+            border-radius: 14px 14px 4px 14px;
+            background-color: $color-blue600Primary;
+            .GiverInnerFrameText {
+              color: #fff;
+              font-family: $font-body;
+              font-size: 12.5px;
+              font-weight: 400;
+              text-align: left;
+            }
+          }
+        }
+        .markFrame {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          .markFrameText {
+            color: $color-success700;
+            font-family: $font-body;
+            font-size: 11px;
+            font-weight: 500;
+          }
+        }
+        .BulletFrame {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          .BulletFrameInner {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 999px;
+            background-color: $color-blue600Primary;
+          }
+          .BulletFrameInner2 {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 999px;
+            border: 2px solid $color-blue600Primary;
+            background-color: #fff;
+          }
+          .BulletFrameInner3 {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 999px;
+            border: 1px solid $color-border;
+            background-color: #fff;
+          }
+          .BulletFrameText {
+            color: $color-ink900;
+            font-family: $font-body;
+            font-size: 13px;
+            font-weight: 500;
+            &.blur {
+              color: $color-ink400;
+            }
+          }
+          .bulletPillFrame {
+            display: flex;
+            padding: 2px 8px;
+            align-items: flex-start;
+            border-radius: 999px;
+            background-color: $color-blue100;
+            .bulletPillText {
+              color: $color-blue700;
+              font-family: $font-body;
+              font-size: 10px;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      .frame {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        align-self: stretch;
+        .innerFrame {
+          display: flex;
+          width: 32px;
+          height: 32px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 999px;
+          background-color: $color-blue600Primary;
+          box-shadow: 0 8px 20px 0 rgba(37, 99, 235, 0.35);
+          .innerFrameNumber {
+            color: #fff;
+            font-family: $font-body;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.14px;
+          }
+        }
+        .stepText {
+          flex: 1 0 0;
+          font-family: $font-body;
+          font-size: 19px;
+          font-weight: 600;
+          letter-spacing: -0.19px;
+          color: $color-ink900;
+        }
+      }
+      .stepSubText {
+        align-self: stretch;
+        color: $color-ink600;
+        font-size: 15.5px;
+        font-family: $font-body;
+        font-weight: 400;
+        line-height: 25px;
+      }
+    }
+  }
+
+  @include mobile-only {
+    padding: 64px 20px;
+    gap: 40px;
+
+    .steps {
+      width: 100%;
+      flex-direction: column;
+      gap: 32px;
+
+      .step {
+        width: 100%;
+        flex: 1 1 auto;
+
+        &:first-child .IllustrationFrame .chip {
+          &:nth-child(1) {
+            grid-column: 2 / span 2;
+          }
+
+          &:nth-child(2),
+          &:nth-child(4) {
+            grid-column: 1 / span 2;
+          }
+
+          &:nth-child(3),
+          &:nth-child(5) {
+            grid-column: 3 / span 2;
+          }
+        }
+      }
+    }
+  }
+}

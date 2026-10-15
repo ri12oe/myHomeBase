@@ -1,0 +1,96 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.headerRow {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+
+  .title {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .labelNumber {
+        color: $color-blue600Primary;
+        font-family: $font-body;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      .labelText {
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.96px;
+        text-transform: uppercase;
+      }
+    }
+
+    .sectionTitle {
+      width: 100%;
+      max-width: 700px;
+      color: $color-ink900;
+      font-family: $font-main;
+      font-size: 40px;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.8px;
+    }
+  }
+
+  .headerSub {
+    width: 100%;
+    max-width: 360px;
+    color: $color-ink600;
+    font-family: $font-body;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  @include tablet-up {
+    .title .sectionTitle {
+      font-size: 52px;
+      letter-spacing: -1.04px;
+    }
+  }
+
+  @include desktop-up {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+
+    .title {
+      width: auto;
+      flex: 1 1 auto;
+      min-width: 0;
+      gap: 24px;
+
+      .sectionTitle {
+        font-size: 68px;
+        line-height: 66.64px;
+        letter-spacing: -1.36px;
+      }
+    }
+
+    .headerSub {
+      flex: 0 1 360px;
+      width: auto;
+      font-size: 17px;
+      line-height: 27px;
+    }
+  }
+}

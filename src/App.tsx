@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import PromiseStrip from './components/promisStrip'
 import Statement from './components/statement'
 import Comparsion from './components/comparsion'
+import HowItWorks from './components/howItWorks'
 export default function App() {
   return (
     <>
@@ -11,6 +12,7 @@ export default function App() {
       <PromiseStrip />
       <Statement />
       <Comparsion />
+      <HowItWorks />
     </>
   )
 }
