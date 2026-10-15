@@ -1,7 +1,7 @@
 import styles from './promiseStrip.module.scss'
 export default function PromiseStrip() {
   return (
-    <main>
+    <main className={styles.promiseStripMain}>
       <div className={styles.promiseStrip}>
         <div className={styles.promise}>
           <div className={styles.frame}>
@@ -33,9 +33,7 @@ export default function PromiseStrip() {
         <div className={styles.promise}>
           <div className={styles.frame}>
             <h3 className={styles.frameTitle}>Track every job</h3>
-            <span className={styles.frameText}>
-              From booked to done
-            </span>
+            <span className={styles.frameText}>From booked to done</span>
           </div>
         </div>
       </div>

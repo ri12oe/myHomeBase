@@ -1,0 +1,155 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.statementMain {
+  padding-top: 0;
+  background-color: $color-ink900;
+}
+
+.statement {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 64px 0;
+  align-items: flex-start;
+  align-self: stretch;
+  .labelcol {
+    display: flex;
+    width: 100%;
+    padding-top: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .labelNumber {
+        color: $color-blue300;
+        font-family: $font-body;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .labelText {
+        color: $color-blue200;
+        font-family: $font-body;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.96px;
+        text-transform: uppercase;
+      }
+    }
+  }
+  .bodycol {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    flex: 1 1 auto;
+    .bodyHeading {
+      width: 100%;
+      max-width: 860px;
+      color: #fff;
+      font-family: $font-main;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.54px;
+      .grayText {
+        color: $color-onDark3;
+      }
+    }
+    .stats {
+      display: grid;
+      width: 100%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 16px;
+      padding-top: 24px;
+      align-items: flex-start;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      .stat {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 4px;
+        .statNumber {
+          color: $color-blue300;
+          font-family: $font-main;
+          font-size: 56px;
+          font-weight: 400;
+          line-height: 1;
+          letter-spacing: -1.12px;
+        }
+        .statText {
+          color: $color-onDark2;
+          font-family: $font-body;
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  @include tablet-up {
+    flex-direction: row;
+    gap: 32px;
+    padding-block: 96px;
+
+    .labelcol {
+      width: 180px;
+      flex: 0 0 180px;
+      padding-top: 10px;
+    }
+
+    .bodycol {
+      width: auto;
+      gap: 48px;
+
+      .bodyHeading {
+        font-size: 44px;
+      }
+
+      .stats {
+        padding-top: 28px;
+      }
+    }
+  }
+
+  @include desktop-up {
+    gap: 0;
+    padding-block: 144px;
+
+    .labelcol {
+      width: 320px;
+      flex-basis: 320px;
+      padding-top: 14px;
+    }
+
+    .bodycol {
+      gap: 72px;
+
+      .bodyHeading {
+        font-size: 54px;
+        line-height: 58.32px;
+        letter-spacing: -0.81px;
+      }
+
+      .stats {
+        display: flex;
+        gap: 0;
+
+        .stat {
+          flex: 1 1 0;
+          padding-bottom: 8px;
+
+          .statNumber {
+            font-size: 72px;
+            line-height: 72px;
+            letter-spacing: -1.44px;
+          }
+        }
+      }
+    }
+  }
+}

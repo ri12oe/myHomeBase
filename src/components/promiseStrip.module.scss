@@ -1,6 +1,10 @@
 @use '../styles/variables' as *;
 @use '../styles/mixins' as *;
 
+.promiseStripMain {
+  padding-bottom: 0;
+}
+
 .promiseStrip {
   display: flex;
   padding-block: 28px;
