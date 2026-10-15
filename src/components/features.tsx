@@ -316,9 +316,10 @@ export default function Features() {
         <div className={style.featureJobTracking}>
           <div className={style.featureJobFrame}>
             <div className={style.verifiedFrame}>
-              <span className={style.verifiedText}>Verified professionals</span>
+              <span className={style.verifiedText}>Job tracking</span>
               <span className={style.verifiedDesp}>
-                Every pro is verified before they can list on myHomeBase.
+                Know exactly where every job stands, from the moment you book to
+                the moment it’s done.
               </span>
             </div>
           </div>
