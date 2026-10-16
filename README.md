@@ -132,3 +132,7 @@ Colors are CSS variables, so the site can change palette and mode without a rebu
 ## Design
 
 The design lives in Figma: **myHomeBase — Landing Page**, including the v3 desktop/mobile pages, every color version in light and dark, and a style guide with the typography and color tokens.
+
+## License
+
+Released under the [MIT License](LICENSE).
