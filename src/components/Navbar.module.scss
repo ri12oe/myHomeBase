@@ -25,6 +25,13 @@
     &[aria-expanded='true'] {
       background-color: $color-ink900;
     }
+
+    // wrapper for the menu ↔ close icon swap animation
+    .toggleIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   .desktopContent {

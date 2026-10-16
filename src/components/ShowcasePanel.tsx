@@ -1,5 +1,26 @@
-import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { AnimatePresence, m, useInView, useReducedMotion } from 'motion/react';
 import styles from './ShowcasePanel.module.scss';
+import { EASE_OUT } from './motionPresets';
+
+/* ------------------------------------------------------------------ */
+/* Entrance timing (seconds after page load)                           */
+/* The hero copy runs from 0 to ~0.5s; the devices follow.             */
+/* ------------------------------------------------------------------ */
+
+const ENTRANCE = {
+  laptop: 0.6,
+  phoneLeft: 0.85,
+  phoneRight: 0.95,
+  rows: 1.35,
+};
+
+// Devices rise into place. Phones also drift in from their side with a slight tilt.
+const deviceRise = (delay: number, side: -1 | 0 | 1 = 0) => ({
+  initial: { opacity: 0, x: side * 40, y: side ? 90 : 80, rotate: side * 3 },
+  animate: { opacity: 1, x: 0, y: 0, rotate: 0 },
+  transition: { duration: 1.1, delay, ease: EASE_OUT },
+});
 
 /* ------------------------------------------------------------------ */
 /* Data — illustrative UI content, not real businesses or reviews      */
@@ -199,8 +220,14 @@ function Laptop() {
                 <span>Price</span>
                 <span />
               </div>
-              {PROS.map((pro) => (
-                <div key={pro.name} className={`${styles.row} ${pro.best ? styles.rowBest : ''}`}>
+              {PROS.map((pro, i) => (
+                <m.div
+                  key={pro.name}
+                  className={`${styles.row} ${pro.best ? styles.rowBest : ''}`}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: ENTRANCE.rows + i * 0.1, ease: EASE_OUT }}
+                >
                   <div className={styles.proCell}>
                     <Avatar pro={pro} />
                     <div>
@@ -215,7 +242,7 @@ function Laptop() {
                     {pro.best && <span className={`${styles.pill} ${styles.pillAmber}`}>Best</span>}
                   </span>
                   <span className={`${styles.miniBtn} ${pro.best ? styles.miniBtnPrimary : ''}`}>Book</span>
-                </div>
+                </m.div>
               ))}
             </div>
 
@@ -334,7 +361,53 @@ function ComparePhone() {
   );
 }
 
+/* Chat replay ------------------------------------------------------- */
+/* The conversation starts complete (so the page reads fine at rest),  */
+/* then loops: clear → typing dots → message → … → hold → repeat.      */
+
+interface ChatStep {
+  shown: number; // how many messages are visible
+  typing: Message['from'] | null; // who is "typing", if anyone
+  hold: number; // ms to stay on this step
+}
+
+const CHAT_STEPS: ChatStep[] = [
+  { shown: MESSAGES.length, typing: null, hold: 4200 }, // first view: full conversation
+  { shown: 0, typing: null, hold: 500 }, // clear
+  ...MESSAGES.flatMap((msg, i): ChatStep[] => [
+    { shown: i, typing: msg.from, hold: msg.from === 'me' ? 900 : 1300 },
+    { shown: i + 1, typing: null, hold: i === MESSAGES.length - 1 ? 5200 : 900 },
+  ]),
+];
+const CHAT_LOOP_START = 1; // after the first pass, loop from "clear"
+
+function useChatReplay(running: boolean) {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    if (!running) return; // paused: off-screen or reduced motion
+    const timer = window.setTimeout(() => {
+      setStep((s) => (s + 1 < CHAT_STEPS.length ? s + 1 : CHAT_LOOP_START));
+    }, CHAT_STEPS[step].hold);
+    return () => window.clearTimeout(timer);
+  }, [step, running]);
+
+  return CHAT_STEPS[step];
+}
+
+const bubbleMotion = {
+  initial: { opacity: 0, y: 10, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  exit: { opacity: 0, transition: { duration: 0.2 } },
+  transition: { duration: 0.45, ease: EASE_OUT },
+};
+
 function ChatPhone() {
+  const chatRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(chatRef, { amount: 0.4 });
+  const reduceMotion = useReducedMotion();
+  const { shown, typing } = useChatReplay(inView && !reduceMotion);
+
   return (
     <PhoneFrame>
       <PhoneHeader title="Bright Nest" subtitle="Verified pro · Deep clean" />
@@ -343,12 +416,29 @@ function ChatPhone() {
         <span>$172</span>
       </div>
       <div className={styles.day}>Today</div>
-      <div className={styles.chat}>
-        {MESSAGES.map((m) => (
-          <div key={m.text} className={`${styles.message} ${m.from === 'me' ? styles.messageMe : ''}`}>
-            {m.text}
-          </div>
-        ))}
+      <div className={styles.chat} ref={chatRef}>
+        <AnimatePresence initial={false}>
+          {MESSAGES.slice(0, shown).map((msg) => (
+            <m.div
+              key={msg.text}
+              className={`${styles.message} ${msg.from === 'me' ? styles.messageMe : ''}`}
+              {...bubbleMotion}
+            >
+              {msg.text}
+            </m.div>
+          ))}
+          {typing && (
+            <m.div
+              key="typing"
+              className={`${styles.typing} ${typing === 'me' ? styles.typingMe : ''}`}
+              {...bubbleMotion}
+            >
+              <i />
+              <i />
+              <i />
+            </m.div>
+          )}
+        </AnimatePresence>
       </div>
       <HiddenNote>Your number stays hidden</HiddenNote>
       <div className={styles.chatInput}>
@@ -385,14 +475,22 @@ export default function ShowcasePanel({ className }: ShowcasePanelProps) {
         style={{ transform: `scale(${scale})` }}
         aria-hidden="true"
       >
+        {/* The outer divs position/scale each device; the inner m.div animates,
+            so the entrance transform never overwrites the layout transform. */}
         <div className={`${styles.device} ${styles.laptopPos}`}>
-          <Laptop />
+          <m.div {...deviceRise(ENTRANCE.laptop)}>
+            <Laptop />
+          </m.div>
         </div>
         <div className={`${styles.device} ${styles.phonePos} ${styles.phoneLeft}`}>
-          <ComparePhone />
+          <m.div {...deviceRise(ENTRANCE.phoneLeft, -1)}>
+            <ComparePhone />
+          </m.div>
         </div>
         <div className={`${styles.device} ${styles.phonePos} ${styles.phoneRight}`}>
-          <ChatPhone />
+          <m.div {...deviceRise(ENTRANCE.phoneRight, 1)}>
+            <ChatPhone />
+          </m.div>
         </div>
       </div>
     </div>

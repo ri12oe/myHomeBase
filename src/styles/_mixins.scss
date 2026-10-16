@@ -6,6 +6,13 @@
   }
 }
 
+// For layouts that need extra room, like the side-by-side hero.
+@mixin wide-up {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
 @mixin tablet-up {
   @media (min-width: $breakpoint-md) {
     @content;

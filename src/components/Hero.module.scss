@@ -2,7 +2,7 @@
 @use '../styles/mixins' as *;
 
 // Mobile-first: base styles are the phone layout (stacked, full width).
-// `desktop-up` (1024px+) switches to the side-by-side layout.
+// `wide-up` (1200px+) switches to the side-by-side layout.
 
 .heroTop {
   display: flex;
@@ -11,7 +11,7 @@
   gap: 24px;
   margin-bottom: 32px;
 
-  @include desktop-up {
+  @include wide-up {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
@@ -25,7 +25,7 @@
     align-items: flex-start;
     gap: 20px;
 
-    @include desktop-up {
+    @include wide-up {
       flex: 1 1 auto;
       min-width: 0;
       gap: 28px;
@@ -52,7 +52,7 @@
       // and 8.4vw keeps it on two lines from ~1280px up.
       font-size: clamp(56px, 12.5vw, 96px);
 
-      @include desktop-up {
+      @include wide-up {
         font-size: clamp(80px, 8.4vw, 136px);
       }
       font-weight: 400;
@@ -63,6 +63,20 @@
         color: $color-blue600Primary;
         font-style: italic;
       }
+
+      // One mask per headline word for the entrance animation.
+      // clip-path hides only what's below the word (it starts pushed down),
+      // so the italic overhang and ascenders are never cut off.
+      .wordMask {
+        display: inline-block;
+        padding-bottom: 0.12em; // room for descenders (p, y)
+        margin-bottom: -0.12em;
+        clip-path: inset(-50% -20% 0 -20%);
+      }
+
+      .word {
+        display: inline-block;
+      }
     }
   }
 
@@ -72,7 +86,7 @@
     align-items: stretch;
     gap: 20px;
 
-    @include desktop-up {
+    @include wide-up {
       flex: 0 0 420px;
       min-width: 0;
       gap: 24px;
@@ -86,7 +100,7 @@
       font-weight: 400;
       line-height: 26px;
 
-      @include desktop-up {
+      @include wide-up {
         font-size: 18px;
         line-height: 29px;
       }
@@ -159,7 +173,7 @@
         }
       }
 
-      @include desktop-up {
+      @include wide-up {
         flex-direction: row;
         align-items: center;
         height: 56px;
@@ -201,7 +215,7 @@
       justify-content: space-between;
       gap: 4px;
 
-      @include desktop-up {
+      @include wide-up {
         gap: 20px;
       }
 
@@ -218,7 +232,7 @@
           font-weight: 500;
           white-space: nowrap;
 
-          @include desktop-up {
+          @include wide-up {
             font-size: 14px;
           }
         }
