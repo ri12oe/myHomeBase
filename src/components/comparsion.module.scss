@@ -46,6 +46,10 @@
         align-items: center;
         align-self: stretch;
         border-bottom: 1px solid $color-border;
+        transition: background-color 0.2s ease;
+        &.rowActive {
+          background-color: rgba($color-blue100, 0.35);
+        }
         .columnFrameNumber {
           width: 40px;
           flex: 0 0 40px;
@@ -72,6 +76,7 @@
       flex-direction: column;
       align-items: flex-start;
       flex: 1 0 0;
+      overflow: hidden; // keeps row highlights inside the rounded corners
       border-radius: 14px;
       border: 1px solid $color-border;
       background-color: #fff;
@@ -109,6 +114,7 @@
         }
       }
       .columnAfterFrame {
+        position: relative;
         display: flex;
         min-height: 68px;
         padding: 16px;
@@ -116,6 +122,29 @@
         gap: 24px;
         align-self: stretch;
         border-bottom: 1px solid $color-border;
+        transition: background-color 0.2s ease;
+        // Highlight + blue accent bar when this row (or its pair) is hovered
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 18px;
+          bottom: 18px;
+          width: 2px;
+          border-radius: 2px;
+          background-color: $color-blue600Primary;
+          transform: scaleY(0);
+          transition: transform 0.25s ease;
+        }
+        &.rowActive {
+          background-color: $color-blue50;
+          &::before {
+            transform: scaleY(1);
+          }
+        }
+        &:last-child {
+          border-bottom: 0;
+        }
         .columnFrameText {
           min-width: 0;
           flex: 1 1 auto;

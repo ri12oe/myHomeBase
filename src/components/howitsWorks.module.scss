@@ -21,6 +21,18 @@
       align-items: flex-start;
       gap: 20px;
       flex: 1 0 0;
+      // Gentle lift when hovering a step
+      .Illustration,
+      .Illustration2 {
+        transition:
+          transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+          box-shadow 0.3s ease;
+      }
+      &:hover .Illustration,
+      &:hover .Illustration2 {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+      }
       .Illustration {
         display: flex;
         height: 196px;

@@ -1,7 +1,101 @@
+import { useEffect, useRef, useState } from 'react'
+import { m, useInView, useReducedMotion, type Variants } from 'motion/react'
 import style from './features.module.scss'
 import HeaderRow from './HeaderRow'
 import CheckIcon from './CheckIcon'
+import { EASE_OUT, revealOnScroll, staggerVariants } from './motionPresets'
+
+/* Motion ------------------------------------------------------------ */
+
+// Each bento card rises in, then plays its own details in order.
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: EASE_OUT,
+      delayChildren: 0.3,
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+// Small pieces (pills, bubbles, rows) popping into place.
+const popVariants: Variants = {
+  hidden: { opacity: 0, y: 8, scale: 0.96 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: EASE_OUT } },
+}
+
+// Price bars and timeline lines grow from the left.
+const growVariants: Variants = {
+  hidden: { scaleX: 0 },
+  show: { scaleX: 1, transition: { duration: 0.6, ease: EASE_OUT } },
+}
+
+// Timeline dots pop in as the line reaches them.
+const dotVariants: Variants = {
+  hidden: { scale: 0.4, opacity: 0 },
+  show: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: EASE_OUT } },
+}
+
+/* Masked contact info that briefly "scrambles", then settles --------- */
+
+const SCRAMBLE_CHARS = '•0123456789'
+
+function ScrambleText({
+  text,
+  className,
+  run,
+}: {
+  text: string
+  className?: string
+  run: number // bump to replay
+}) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, amount: 0.8 })
+  const reduceMotion = useReducedMotion()
+  const [shown, setShown] = useState(text)
+
+  useEffect(() => {
+    if (!inView || reduceMotion) return
+    let frame = 0
+    let interval = 0
+    // Wait for the card to finish rising, then scramble ~10 frames.
+    const start = window.setTimeout(() => {
+      interval = window.setInterval(() => {
+        frame += 1
+        if (frame > 10) {
+          window.clearInterval(interval)
+          setShown(text)
+          return
+        }
+        setShown(
+          text.replace(
+            /•/g,
+            () => SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)],
+          ),
+        )
+      }, 45)
+    }, run === 0 ? 700 : 0)
+    return () => {
+      window.clearTimeout(start)
+      window.clearInterval(interval)
+    }
+  }, [inView, run, reduceMotion, text])
+
+  return (
+    <span ref={ref} className={className}>
+      {shown}
+    </span>
+  )
+}
+
 export default function Features() {
+  // Hovering the privacy card replays the scramble.
+  const [scrambleRun, setScrambleRun] = useState(0)
+
   return (
     <main className={style.featureMain}>
       <HeaderRow
@@ -11,10 +105,15 @@ export default function Features() {
         description="Built around the three things quote sites get wrong: the price, your privacy, and what happens after you book."
         colorTheme="dark"
       />
-      <div className={style.bento}>
+      <m.div
+        className={style.bento}
+        variants={staggerVariants(0.12)}
+        {...revealOnScroll}
+        viewport={{ once: true, amount: 0.15 }}
+      >
         <div className={style.bentoTop}>
           <div className={style.left}>
-            <div className={style.transparentPricing}>
+            <m.div className={style.transparentPricing} variants={cardVariants}>
               <div className={style.transparentPricingFrame}>
                 <div className={style.transparentPricingInnerFrame}>
                   <div className={style.transparentPricingInnerInnerFrame}>
@@ -36,15 +135,17 @@ export default function Features() {
                   <div className={style.priceComparisonFrame}>
                     <div className={style.priceComparisonInnerFrame}>
                       <span className={style.priceTitle}>GreenLine Lawn</span>
-                      <div className={style.pill}>
+                      <m.div className={style.pill} variants={popVariants}>
                         <span className={style.pillText}>Best price</span>
-                      </div>
+                      </m.div>
                       <span className={style.price}>$45</span>
                     </div>
                     <div className={style.track}>
-                      <div
+                      <m.div
                         className={`${style.bar} ${style.highlighted}`}
-                      ></div>
+                        variants={growVariants}
+                        style={{ originX: 0 }}
+                      />
                     </div>
                   </div>
                   <div className={style.priceComparisonFrame}>
@@ -53,7 +154,11 @@ export default function Features() {
                       <span className={style.price}>$55</span>
                     </div>
                     <div className={style.track}>
-                      <div className={`${style.bar} ${style.long}`}></div>
+                      <m.div
+                        className={`${style.bar} ${style.long}`}
+                        variants={growVariants}
+                        style={{ originX: 0 }}
+                      />
                     </div>
                   </div>
                   <div className={style.priceComparisonFrame}>
@@ -62,14 +167,18 @@ export default function Features() {
                       <span className={style.price}>$68</span>
                     </div>
                     <div className={style.track}>
-                      <div className={`${style.bar} ${style.longer}`}></div>
+                      <m.div
+                        className={`${style.bar} ${style.longer}`}
+                        variants={growVariants}
+                        style={{ originX: 0 }}
+                      />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </m.div>
             <div className={style.bentoMiddle}>
-              <div className={style.featuresBlock}>
+              <m.div className={style.featuresBlock} variants={cardVariants}>
                 <div className={style.verifiedFrame}>
                   <span className={style.verifiedText}>
                     Verified professionals
@@ -79,25 +188,21 @@ export default function Features() {
                   </span>
                 </div>
                 <div className={style.verifiedBottomFrame}>
-                  <div className={style.pillverifted}>
-                    <CheckIcon size={14} color={'#047857'} />
-                    <span className={style.pillTextVeri}>ID verifed</span>
-                  </div>
-                  <div className={style.pillverifted}>
-                    <CheckIcon size={14} color={'#047857'} />
-                    <span className={style.pillTextVeri}>
-                      Background checked
-                    </span>
-                  </div>
-                  <div className={style.pillverifted}>
-                    <CheckIcon size={14} color={'#047857'} />
-                    <span className={style.pillTextVeri}>
-                      Licensed & insured
-                    </span>
-                  </div>
+                  {['ID verified', 'Background checked', 'Licensed & insured'].map(
+                    (label) => (
+                      <m.div
+                        key={label}
+                        className={style.pillverifted}
+                        variants={popVariants}
+                      >
+                        <CheckIcon size={14} color={'#047857'} />
+                        <span className={style.pillTextVeri}>{label}</span>
+                      </m.div>
+                    ),
+                  )}
                 </div>
-              </div>
-              <div className={style.featuresBlock}>
+              </m.div>
+              <m.div className={style.featuresBlock} variants={cardVariants}>
                 <div className={style.verifiedFrame}>
                   <span className={style.verifiedText}>In-app messaging</span>
                   <span className={style.verifiedDesp}>
@@ -105,7 +210,7 @@ export default function Features() {
                   </span>
                 </div>
                 <div className={style.messageBlock}>
-                  <div className={style.reciverFrame}>
+                  <m.div className={style.reciverFrame} variants={popVariants}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width={14}
@@ -137,17 +242,21 @@ export default function Features() {
                       />
                     </svg>
                     <span className={style.reciverText}>kitchen_sink.jpg</span>
-                  </div>
-                  <div className={style.giverFramer}>
+                  </m.div>
+                  <m.div className={style.giverFramer} variants={popVariants}>
                     <div className={style.giverInnerFrame}>
                       Got it — bringing the right part.
                     </div>
-                  </div>
+                  </m.div>
                 </div>
-              </div>
+              </m.div>
             </div>
           </div>
-          <div className={style.privacy}>
+          <m.div
+            className={style.privacy}
+            variants={cardVariants}
+            onMouseEnter={() => setScrambleRun((n) => n + 1)}
+          >
             <div className={style.verifiedFrame}>
               <span className={style.verifiedText}>Privacy by default</span>
               <span className={style.verifiedDesp}>
@@ -174,7 +283,11 @@ export default function Features() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className={style.contactCardInfo}>(•••) •••-••42</span>
+                <ScrambleText
+                  className={style.contactCardInfo}
+                  text="(•••) •••-••42"
+                  run={scrambleRun}
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={16}
@@ -237,7 +350,11 @@ export default function Features() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className={style.contactCardInfo}>j••••••@•••••.com</span>
+                <ScrambleText
+                  className={style.contactCardInfo}
+                  text="j••••••@•••••.com"
+                  run={scrambleRun}
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={16}
@@ -276,7 +393,7 @@ export default function Features() {
                   />
                 </svg>
               </div>
-              <div className={style.contactPill}>
+              <m.div className={style.contactPill} variants={popVariants}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={14}
@@ -303,17 +420,17 @@ export default function Features() {
                 <span className={style.contactPillText}>
                   Hidden until you choose
                 </span>
-              </div>
+              </m.div>
             </div>
-            <div className={style.callout}>
+            <m.div className={style.callout} variants={popVariants}>
               <span className={style.calloutLabel}>0</span>
               <span className={style.calloutText}>
                 companies your number gets passed to
               </span>
-            </div>
-          </div>
+            </m.div>
+          </m.div>
         </div>
-        <div className={style.featureJobTracking}>
+        <m.div className={style.featureJobTracking} variants={cardVariants}>
           <div className={style.featureJobFrame}>
             <div className={style.verifiedFrame}>
               <span className={style.verifiedText}>Job tracking</span>
@@ -323,37 +440,59 @@ export default function Features() {
               </span>
             </div>
           </div>
-          <div className={style.timeline}>
+          {/* Progress fills left to right: each blue line grows, then its dot pops. */}
+          <m.div className={style.timeline} variants={staggerVariants(0.12)}>
             <div className={style.timelineFrame}>
               <div className={style.timelineInnerFrame}>
                 <span className={style.line}></span>
-                <div
+                <m.div
                   className={`${style.dot} ${style.completedDot} ${style.mobileCompleteDot}`}
+                  variants={dotVariants}
                 >
                   <CheckIcon size={16} color="#fff" />
-                </div>
-                <span className={`${style.line} ${style.bluelined}`}></span>
+                </m.div>
+                <m.span
+                  className={`${style.line} ${style.bluelined}`}
+                  variants={growVariants}
+                  style={{ originX: 0 }}
+                />
               </div>
               <span className={style.timelineLabel}>Booked</span>
               <span className={style.timelineTime}>Mon 9:02 AM</span>
             </div>
             <div className={style.timelineFrame}>
               <div className={style.timelineInnerFrame}>
-                <span className={`${style.line} ${style.bluelined}`}></span>
-                <div
+                <m.span
+                  className={`${style.line} ${style.bluelined}`}
+                  variants={growVariants}
+                  style={{ originX: 0 }}
+                />
+                <m.div
                   className={`${style.dot} ${style.completedDot} ${style.mobileCompleteDot}`}
+                  variants={dotVariants}
                 >
                   <CheckIcon size={16} color="#fff" />
-                </div>
-                <span className={`${style.line} ${style.bluelined}`}></span>
+                </m.div>
+                <m.span
+                  className={`${style.line} ${style.bluelined}`}
+                  variants={growVariants}
+                  style={{ originX: 0 }}
+                />
               </div>
               <span className={style.timelineLabel}>Confirmed</span>
               <span className={style.timelineTime}>Mon 9:15 AM</span>
             </div>
             <div className={style.timelineFrame}>
               <div className={style.timelineInnerFrame}>
-                <span className={`${style.line} ${style.bluelined}`}></span>
-                <div className={style.dot}>
+                <m.span
+                  className={`${style.line} ${style.bluelined}`}
+                  variants={growVariants}
+                  style={{ originX: 0 }}
+                />
+                <m.div
+                  className={`${style.dot} ${style.currentDot}`}
+                  variants={dotVariants}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width={12}
@@ -364,17 +503,17 @@ export default function Features() {
                   >
                     <circle cx={6} cy={6} r={6} fill="#2563EB" />
                   </svg>
-                </div>
+                </m.div>
                 <span className={`${style.line} ${style.blur}`}></span>
               </div>
               <span className={style.timelineLabel}>
-                <span className={style.desktopTimelineText}>Booked</span>
+                <span className={style.desktopTimelineText}>On the way</span>
                 <span className={style.mobileTimelineText}>En route</span>
               </span>
               <span
                 className={`${style.timelineTime} ${style.highlightedText}`}
               >
-                Mon 9:02 AM
+                Thu 9:48 AM
               </span>
             </div>
             <div className={style.timelineFrame}>
@@ -423,9 +562,9 @@ export default function Features() {
               </span>
               <span className={style.timelineTime}>—</span>
             </div>
-          </div>
-        </div>
-      </div>
+          </m.div>
+        </m.div>
+      </m.div>
     </main>
   )
 }

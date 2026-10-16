@@ -61,25 +61,38 @@
       }
     }
     .stats {
+      position: relative;
       display: grid;
       width: 100%;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 24px 16px;
       padding-top: 24px;
       align-items: flex-start;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      // Divider is its own element so it can draw in (see .statsRule)
+      .statsRule {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.14);
+        transform-origin: left center;
+      }
       .stat {
         display: flex;
         min-width: 0;
         flex-direction: column;
         gap: 4px;
         .statNumber {
-          color: $color-blue300;
+          color: #fff;
           font-family: $font-main;
           font-size: 56px;
           font-weight: 400;
           line-height: 1;
           letter-spacing: -1.12px;
+        }
+        .statNumberAccent {
+          color: $color-blue300;
         }
         .statText {
           color: $color-onDark2;

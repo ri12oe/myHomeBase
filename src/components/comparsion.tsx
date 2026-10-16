@@ -1,8 +1,66 @@
+import { useState } from 'react'
+import { m, type Variants } from 'motion/react'
 import styles from './comparsion.module.scss'
 import HomeIcon from './HomeIcon'
 import HeaderRow from './HeaderRow'
+import { EASE_OUT, revealOnScroll, staggerVariants } from './motionPresets'
+
+const ROWS = [
+  {
+    before: '“Request a quote,” then wait days for callbacks',
+    after: 'Prices are shown upfront. Compare them in one place.',
+  },
+  {
+    before: 'Your number is passed to multiple companies',
+    after: 'Your contact info is never shared without your OK.',
+  },
+  {
+    before: 'High-pressure sales calls',
+    after: 'Message pros in-app, on your schedule.',
+  },
+  {
+    before: 'No idea who’s actually showing up',
+    after: 'Verified pros, rated on real, completed jobs.',
+  },
+  {
+    before: '“Are they still coming?”',
+    after: 'Live status, from booked to done.',
+  },
+]
+
+// A table row sliding in a little.
+const rowVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_OUT } },
+}
+
+// The myHomeBase card rises in just after "the usual way" rows start,
+// then fills its own rows one by one.
+const afterColumnVariants: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.2,
+      ease: EASE_OUT,
+      delayChildren: 0.45,
+      staggerChildren: 0.07,
+    },
+  },
+}
 
 export default function Comparsion() {
+  // Hovering a row highlights its pair in the other column (desktop).
+  const [activeRow, setActiveRow] = useState<number | null>(null)
+
+  const rowHandlers = (i: number) => ({
+    onMouseEnter: () => setActiveRow(i),
+    onMouseLeave: () => setActiveRow(null),
+  })
+  const activeClass = (i: number) => (activeRow === i ? styles.rowActive : '')
+
   return (
     <main className={styles.comparsionMain}>
       <HeaderRow
@@ -12,42 +70,33 @@ export default function Comparsion() {
         description="Most quote sites sell your request to as many companies as they can. We built the opposite."
       />
       <div className={styles.comparisonTable}>
-        <div className={styles.columnBefore}>
-          <div className={styles.columnTopFrame}>
+        <m.div
+          className={styles.columnBefore}
+          variants={staggerVariants(0.07)}
+          {...revealOnScroll}
+        >
+          <m.div className={styles.columnTopFrame} variants={rowVariants}>
             <span className={styles.columnTopText}>The Usual Way</span>
-          </div>
-          <div className={styles.columnFrame}>
-            <span className={styles.columnFrameNumber}>01</span>
-            <span className={styles.columnFrameText}>
-              “Request a quote,” then wait days for callbacks
-            </span>
-          </div>
-          <div className={styles.columnFrame}>
-            <span className={styles.columnFrameNumber}>02</span>
-            <span className={styles.columnFrameText}>
-              Your number is passed to multiple companies
-            </span>
-          </div>
-          <div className={styles.columnFrame}>
-            <span className={styles.columnFrameNumber}>03</span>
-            <span className={styles.columnFrameText}>
-              High-pressure sales calls
-            </span>
-          </div>
-          <div className={styles.columnFrame}>
-            <span className={styles.columnFrameNumber}>04</span>
-            <span className={styles.columnFrameText}>
-              No idea who’s actually showing up
-            </span>
-          </div>
-          <div className={styles.columnFrame}>
-            <span className={styles.columnFrameNumber}>05</span>
-            <span className={styles.columnFrameText}>
-              “Are they still coming?”
-            </span>
-          </div>
-        </div>
-        <div className={styles.columnAfter}>
+          </m.div>
+          {ROWS.map((row, i) => (
+            <m.div
+              key={row.before}
+              className={`${styles.columnFrame} ${activeClass(i)}`}
+              variants={rowVariants}
+              {...rowHandlers(i)}
+            >
+              <span className={styles.columnFrameNumber}>
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className={styles.columnFrameText}>{row.before}</span>
+            </m.div>
+          ))}
+        </m.div>
+        <m.div
+          className={styles.columnAfter}
+          variants={afterColumnVariants}
+          {...revealOnScroll}
+        >
           <div className={styles.columnTopAfterFrame}>
             <div className={styles.homeIconWrapper}>
               <HomeIcon />
@@ -56,32 +105,17 @@ export default function Comparsion() {
               <span className={styles.nameBrandHighlight}>my</span>HomeBase
             </span>
           </div>
-          <div className={styles.columnAfterFrame}>
-            <span className={styles.columnFrameText}>
-              Prices are shown upfront. Compare them in one place.
-            </span>
-          </div>
-          <div className={styles.columnAfterFrame}>
-            <span className={styles.columnFrameText}>
-              Your contact info is never shared without your OK.
-            </span>
-          </div>
-          <div className={styles.columnAfterFrame}>
-            <span className={styles.columnFrameText}>
-              Message pros in-app, on your schedule.
-            </span>
-          </div>
-          <div className={styles.columnAfterFrame}>
-            <span className={styles.columnFrameText}>
-              Verified pros, rated on real, completed jobs.
-            </span>
-          </div>
-          <div className={styles.columnAfterFrame}>
-            <span className={styles.columnFrameText}>
-              Live status, from booked to done.
-            </span>
-          </div>
-        </div>
+          {ROWS.map((row, i) => (
+            <m.div
+              key={row.after}
+              className={`${styles.columnAfterFrame} ${activeClass(i)}`}
+              variants={rowVariants}
+              {...rowHandlers(i)}
+            >
+              <span className={styles.columnFrameText}>{row.after}</span>
+            </m.div>
+          ))}
+        </m.div>
       </div>
     </main>
   )
