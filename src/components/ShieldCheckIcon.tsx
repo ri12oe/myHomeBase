@@ -22,14 +22,14 @@ const ShieldCheckIcon: React.FC<ShieldCheckIconProps> = ({
     >
       <path
         d="M6 11C6 11 10 9 10 6V2.5L6 1L2 2.5V6C2 9 6 11 6 11Z"
-        stroke="#047857"
+        stroke="var(--color-success700)"
         strokeWidth={1.125}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M4.5 6L5.5 7L7.5 5"
-        stroke="#047857"
+        stroke="var(--color-success700)"
         strokeWidth={1.125}
         strokeLinecap="round"
         strokeLinejoin="round"

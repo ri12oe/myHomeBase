@@ -81,7 +81,7 @@ export default function FAQ() {
             <MessageSquareText
               size={20}
               style={{ flexShrink: 0 }}
-              color="#1D4ED8"
+              color="var(--color-blue700)"
             />
           </div>
           <div className={style.buttonFrame}>
@@ -124,12 +124,12 @@ export default function FAQ() {
                     transition={{ duration: 0.3, ease: EASE_OUT }}
                   >
                     {isOpen ? (
-                      <Minus size={15} style={{ flexShrink: 0 }} color="#fff" />
+                      <Minus size={15} style={{ flexShrink: 0 }} color="var(--color-onPrimary)" />
                     ) : (
                       <Plus
                         size={15}
                         style={{ flexShrink: 0 }}
-                        color="#475569"
+                        color="var(--color-ink600)"
                       />
                     )}
                   </m.span>

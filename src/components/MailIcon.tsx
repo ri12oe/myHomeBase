@@ -11,7 +11,7 @@ interface MailIconProps {
 const MailIcon: React.FC<MailIconProps> = ({
   size = 20,
   className,
-  color = "#94A3B8",
+  color = "var(--color-ink400)",
   strokeWidth = 1.66667,
 }) => {
   return (

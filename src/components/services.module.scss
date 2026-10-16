@@ -8,7 +8,7 @@
   align-items: flex-start;
   gap: 64px;
   align-self: stretch;
-  background-color: #fff;
+  background-color: $color-surface;
   .serviceIndex {
     display: flex;
     align-items: flex-start;
@@ -147,7 +147,7 @@
           align-self: stretch;
           border-radius: 12px;
           border: 1px solid $color-border;
-          background-color: #fff;
+          background-color: $color-surface;
           .IconTile {
             display: flex;
             width: 40px;
@@ -194,7 +194,7 @@
           align-items: flex-start;
           border-radius: 6px;
           border: 1px solid $color-border;
-          background-color: #fff;
+          background-color: $color-surface;
           .detailFramePillLabel {
             color: $color-ink600;
             font-family: $font-body;

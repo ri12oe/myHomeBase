@@ -48,7 +48,7 @@
         border-bottom: 1px solid $color-border;
         transition: background-color 0.2s ease;
         &.rowActive {
-          background-color: rgba($color-blue100, 0.35);
+          background-color: alpha($color-blue100, 35%);
         }
         .columnFrameNumber {
           width: 40px;
@@ -79,8 +79,8 @@
       overflow: hidden; // keeps row highlights inside the rounded corners
       border-radius: 14px;
       border: 1px solid $color-border;
-      background-color: #fff;
-      box-shadow: 0 12px 32px 0 rgba(11, 27, 51, 0.06);
+      background-color: $color-surface;
+      box-shadow: 0 12px 32px 0 alpha($color-shadow, 6%);
       .columnTopAfterFrame {
         display: flex;
         min-height: 56px;

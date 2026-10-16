@@ -96,8 +96,8 @@
       gap: 16px;
       border-radius: 14px;
       border: 1px solid $color-border;
-      background-color: #fff;
-      box-shadow: 0 16px 40px 0 rgba(37, 99, 235, 0.1);
+      background-color: $color-surface;
+      box-shadow: 0 16px 40px 0 alpha($color-blue600Primary, 10%);
       // Animated wrappers for the form ↔ success swap.
       // Inherit the card's column + gap so the layout is unchanged.
       .formFields,
@@ -121,7 +121,7 @@
         align-items: center;
         border-radius: 999px;
         background-color: $color-success500;
-        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+        box-shadow: 0 8px 20px alpha($color-success500, 35%);
       }
       .successText {
         max-width: 300px;
@@ -156,8 +156,8 @@
           left: 4px;
           width: calc(50% - 6px);
           border-radius: 999px;
-          background-color: #fff;
-          box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+          background-color: $color-surface;
+          box-shadow: 0 4px 12px 0 alpha($color-shadow, 8%);
           pointer-events: none;
           transition: transform 180ms ease;
         }
@@ -222,8 +222,8 @@
 
           &:focus-within {
             border-color: $color-blue600Primary;
-            background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+            background-color: $color-surface;
+            box-shadow: 0 0 0 3px alpha($color-blue600Primary, 16%);
           }
 
           input {
@@ -270,7 +270,7 @@
           }
         }
         .buttonPrimaryText {
-          color: #fff;
+          color: $color-onPrimary;
           font-family: $font-body;
           font-size: 16px;
           font-weight: 600;

@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-  border-bottom: 1px solid #e3e8f0;
+  border-bottom: 1px solid $color-border;
   background-color: $color-background;
 
   .menuToggle {
@@ -215,7 +215,7 @@
     border: none;
     text-decoration: none;
     cursor: pointer;
-    color: #fff;
+    color: $color-onPrimary;
     font-family: $font-body;
     font-size: 14px;
     font-weight: 600;

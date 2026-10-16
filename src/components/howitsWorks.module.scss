@@ -9,7 +9,7 @@
   align-items: flex-start;
   gap: 72px;
   align-self: stretch;
-  background-color: #fff;
+  background-color: $color-surface;
   .steps {
     display: flex;
     width: 1200px;
@@ -31,7 +31,7 @@
       &:hover .Illustration,
       &:hover .Illustration2 {
         transform: translateY(-4px);
-        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
+        box-shadow: 0 12px 28px alpha($color-blue600Primary, 12%);
       }
       .Illustration {
         display: flex;
@@ -59,10 +59,10 @@
             grid-column: span 2;
             border-radius: 999px;
             border: 1px solid $color-border;
-            background-color: #fff;
+            background-color: $color-surface;
             &.highlightedChip {
               background-color: $color-blue600Primary;
-              color: #fff;
+              color: $color-onPrimary;
             }
             &:last-child {
               grid-column: 2 / span 2;
@@ -75,7 +75,7 @@
               text-align: center;
               white-space: nowrap;
               &.highlightedChipText {
-                color: #fff;
+                color: $color-onPrimary;
               }
             }
           }
@@ -88,7 +88,7 @@
           align-self: stretch;
           border-radius: 12px;
           border: 1px solid $color-border;
-          background-color: #fff;
+          background-color: $color-surface;
           &.highlightedStep2Frame {
             border: 1.5px solid $color-blue600Primary;
           }
@@ -138,7 +138,7 @@
           align-items: flex-start;
           border-radius: 14px 14px 14px 4px;
           border: 1px solid $color-border;
-          background-color: #fff;
+          background-color: $color-surface;
           .reciveFrameText {
             color: $color-ink900;
             font-family: $font-body;
@@ -159,7 +159,7 @@
             border-radius: 14px 14px 4px 14px;
             background-color: $color-blue600Primary;
             .GiverInnerFrameText {
-              color: #fff;
+              color: $color-onPrimary;
               font-family: $font-body;
               font-size: 12.5px;
               font-weight: 400;
@@ -199,7 +199,7 @@
             align-items: center;
             border-radius: 999px;
             border: 2px solid $color-blue600Primary;
-            background-color: #fff;
+            background-color: $color-surface;
           }
           .BulletFrameInner3 {
             display: flex;
@@ -209,7 +209,7 @@
             align-items: center;
             border-radius: 999px;
             border: 1px solid $color-border;
-            background-color: #fff;
+            background-color: $color-surface;
           }
           .BulletFrameText {
             color: $color-ink900;
@@ -248,9 +248,9 @@
           align-items: center;
           border-radius: 999px;
           background-color: $color-blue600Primary;
-          box-shadow: 0 8px 20px 0 rgba(37, 99, 235, 0.35);
+          box-shadow: 0 8px 20px 0 alpha($color-blue600Primary, 35%);
           .innerFrameNumber {
-            color: #fff;
+            color: $color-onPrimary;
             font-family: $font-body;
             font-size: 14px;
             font-weight: 600;

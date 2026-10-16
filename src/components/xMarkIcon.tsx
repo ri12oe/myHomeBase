@@ -13,8 +13,8 @@ const XMarkIcon: React.FC<xMarkIconProps> = ({
   width = 40,
   height = 40,
   className,
-  backgroundColor = "#0B1B33",
-  iconColor = "white",
+  backgroundColor = "var(--color-ink900)",
+  iconColor = "var(--color-surface)", // flips with the square in dark mode
 }) => {
   return (
     <svg

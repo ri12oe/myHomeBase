@@ -195,7 +195,7 @@ export default function Features() {
                         className={style.pillverifted}
                         variants={popVariants}
                       >
-                        <CheckIcon size={14} color={'#047857'} />
+                        <CheckIcon size={14} color={'var(--color-success700)'} />
                         <span className={style.pillTextVeri}>{label}</span>
                       </m.div>
                     ),
@@ -221,21 +221,21 @@ export default function Features() {
                     >
                       <path
                         d="M11.0833 1.75H2.91667C2.27233 1.75 1.75 2.27233 1.75 2.91667V11.0833C1.75 11.7277 2.27233 12.25 2.91667 12.25H11.0833C11.7277 12.25 12.25 11.7277 12.25 11.0833V2.91667C12.25 2.27233 11.7277 1.75 11.0833 1.75Z"
-                        stroke="#475569"
+                        stroke="var(--color-ink600)"
                         strokeWidth={1.16667}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                       <path
                         d="M5.24998 6.41683C5.89431 6.41683 6.41665 5.89449 6.41665 5.25016C6.41665 4.60583 5.89431 4.0835 5.24998 4.0835C4.60565 4.0835 4.08331 4.60583 4.08331 5.25016C4.08331 5.89449 4.60565 6.41683 5.24998 6.41683Z"
-                        stroke="#475569"
+                        stroke="var(--color-ink600)"
                         strokeWidth={1.16667}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                       <path
                         d="M12.25 8.75016L9.33335 5.8335L2.91669 12.2502"
-                        stroke="#475569"
+                        stroke="var(--color-ink600)"
                         strokeWidth={1.16667}
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -277,7 +277,7 @@ export default function Features() {
                 >
                   <path
                     d="M14.6666 11.2802V13.2802C14.6674 13.4659 14.6294 13.6497 14.555 13.8198C14.4806 13.9899 14.3715 14.1426 14.2347 14.2681C14.0979 14.3937 13.9364 14.4892 13.7605 14.5487C13.5846 14.6082 13.3982 14.6303 13.2133 14.6136C11.1619 14.3907 9.19131 13.6897 7.45998 12.5669C5.84919 11.5433 4.48353 10.1777 3.45998 8.56689C2.33329 6.8277 1.63214 4.84756 1.41331 2.78689C1.39665 2.60254 1.41856 2.41673 1.47764 2.24131C1.53673 2.06589 1.63169 1.90469 1.75649 1.76797C1.88128 1.63126 2.03318 1.52203 2.2025 1.44724C2.37183 1.37245 2.55487 1.33374 2.73998 1.33356H4.73998C5.06351 1.33038 5.37717 1.44495 5.62248 1.65592C5.8678 1.86689 6.02803 2.15986 6.07331 2.48023C6.15772 3.12027 6.31428 3.74871 6.53998 4.35356C6.62967 4.59218 6.64908 4.8515 6.59591 5.10081C6.54274 5.35012 6.41922 5.57897 6.23998 5.76023L5.39331 6.60689C6.34235 8.27592 7.72428 9.65786 9.39331 10.6069L10.24 9.76023C10.4212 9.58099 10.6501 9.45746 10.8994 9.40429C11.1487 9.35112 11.408 9.37053 11.6466 9.46023C12.2515 9.68593 12.8799 9.84248 13.52 9.92689C13.8438 9.97258 14.1396 10.1357 14.351 10.3852C14.5624 10.6348 14.6748 10.9533 14.6666 11.2802Z"
-                    stroke="#64748B"
+                    stroke="var(--color-ink500)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -298,28 +298,28 @@ export default function Features() {
                 >
                   <path
                     d="M6.58663 6.58643C6.39013 6.76952 6.23253 6.99033 6.12321 7.23566C6.0139 7.48099 5.95512 7.74582 5.95038 8.01437C5.94565 8.28291 5.99505 8.54965 6.09563 8.79869C6.19622 9.04772 6.34594 9.27394 6.53586 9.46386C6.72578 9.65378 6.952 9.8035 7.20104 9.90409C7.45007 10.0047 7.71681 10.0541 7.98536 10.0493C8.2539 10.0446 8.51873 9.98582 8.76406 9.87651C9.0094 9.7672 9.2302 9.60959 9.4133 9.41309"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M7.15332 3.38683C7.43419 3.35184 7.71694 3.33402 7.99999 3.3335C12.6667 3.3335 14.6667 8.00016 14.6667 8.00016C14.3686 8.63824 13.9948 9.23812 13.5533 9.78683"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M4.40671 4.40674C3.08096 5.30992 2.02006 6.55032 1.33337 8.00007C1.33337 8.00007 3.33337 12.6667 8.00004 12.6667C9.27731 12.6702 10.5272 12.2968 11.5934 11.5934"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M1.33337 1.3335L14.6667 14.6668"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -337,14 +337,14 @@ export default function Features() {
                 >
                   <path
                     d="M13.3333 2.6665H2.66665C1.93027 2.6665 1.33331 3.26346 1.33331 3.99984V11.9998C1.33331 12.7362 1.93027 13.3332 2.66665 13.3332H13.3333C14.0697 13.3332 14.6666 12.7362 14.6666 11.9998V3.99984C14.6666 3.26346 14.0697 2.6665 13.3333 2.6665Z"
-                    stroke="#64748B"
+                    stroke="var(--color-ink500)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M14.6666 4.6665L7.99998 8.6665L1.33331 4.6665"
-                    stroke="#64748B"
+                    stroke="var(--color-ink500)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -365,28 +365,28 @@ export default function Features() {
                 >
                   <path
                     d="M6.58663 6.58643C6.39013 6.76952 6.23253 6.99033 6.12321 7.23566C6.0139 7.48099 5.95512 7.74582 5.95038 8.01437C5.94565 8.28291 5.99505 8.54965 6.09563 8.79869C6.19622 9.04772 6.34594 9.27394 6.53586 9.46386C6.72578 9.65378 6.952 9.8035 7.20104 9.90409C7.45007 10.0047 7.71681 10.0541 7.98536 10.0493C8.2539 10.0446 8.51873 9.98582 8.76406 9.87651C9.0094 9.7672 9.2302 9.60959 9.4133 9.41309"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M7.15332 3.38683C7.43419 3.35184 7.71694 3.33402 7.99999 3.3335C12.6667 3.3335 14.6667 8.00016 14.6667 8.00016C14.3686 8.63824 13.9948 9.23812 13.5533 9.78683"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M4.40671 4.40674C3.08096 5.30992 2.02006 6.55032 1.33337 8.00007C1.33337 8.00007 3.33337 12.6667 8.00004 12.6667C9.27731 12.6702 10.5272 12.2968 11.5934 11.5934"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M1.33337 1.3335L14.6667 14.6668"
-                    stroke="#94A3B8"
+                    stroke="var(--color-ink400)"
                     strokeWidth={1.33333}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -404,14 +404,14 @@ export default function Features() {
                 >
                   <path
                     d="M11.0833 6.4165H2.91667C2.27233 6.4165 1.75 6.93884 1.75 7.58317V11.6665C1.75 12.3108 2.27233 12.8332 2.91667 12.8332H11.0833C11.7277 12.8332 12.25 12.3108 12.25 11.6665V7.58317C12.25 6.93884 11.7277 6.4165 11.0833 6.4165Z"
-                    stroke="#1D4ED8"
+                    stroke="var(--color-blue700)"
                     strokeWidth={1.45833}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M4.08331 6.4165V4.08317C4.08331 3.30962 4.3906 2.56776 4.93758 2.02078C5.48457 1.47379 6.22643 1.1665 6.99998 1.1665C7.77353 1.1665 8.51539 1.47379 9.06237 2.02078C9.60936 2.56776 9.91665 3.30962 9.91665 4.08317V6.4165"
-                    stroke="#1D4ED8"
+                    stroke="var(--color-blue700)"
                     strokeWidth={1.45833}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -449,7 +449,7 @@ export default function Features() {
                   className={`${style.dot} ${style.completedDot} ${style.mobileCompleteDot}`}
                   variants={dotVariants}
                 >
-                  <CheckIcon size={16} color="#fff" />
+                  <CheckIcon size={16} color="var(--color-onPrimary)" />
                 </m.div>
                 <m.span
                   className={`${style.line} ${style.bluelined}`}
@@ -471,7 +471,7 @@ export default function Features() {
                   className={`${style.dot} ${style.completedDot} ${style.mobileCompleteDot}`}
                   variants={dotVariants}
                 >
-                  <CheckIcon size={16} color="#fff" />
+                  <CheckIcon size={16} color="var(--color-onPrimary)" />
                 </m.div>
                 <m.span
                   className={`${style.line} ${style.bluelined}`}
@@ -501,7 +501,7 @@ export default function Features() {
                     fill="none"
                     aria-hidden="true"
                   >
-                    <circle cx={6} cy={6} r={6} fill="#2563EB" />
+                    <circle cx={6} cy={6} r={6} fill="var(--color-blue600Primary)" />
                   </svg>
                 </m.div>
                 <span className={`${style.line} ${style.blur}`}></span>
@@ -528,7 +528,7 @@ export default function Features() {
                     fill="none"
                     aria-hidden="true"
                   >
-                    <circle cx={4} cy={4} r={4} fill="#E3E8F0" />
+                    <circle cx={4} cy={4} r={4} fill="var(--color-border)" />
                   </svg>
                 </div>
                 <span className={`${style.line} ${style.blur}`}></span>
@@ -551,7 +551,7 @@ export default function Features() {
                     fill="none"
                     aria-hidden="true"
                   >
-                    <circle cx={4} cy={4} r={4} fill="#E3E8F0" />
+                    <circle cx={4} cy={4} r={4} fill="var(--color-border)" />
                   </svg>
                 </div>
                 <span className={style.line}></span>

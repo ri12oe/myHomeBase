@@ -3,7 +3,7 @@ import type { SVGProps } from 'react'
 export default function MenuIcon({
   width = 15,
   height = 10,
-  stroke = '#0B1B33',
+  stroke = 'var(--color-ink900)',
   strokeWidth = 1.66667,
   ...props
 }: SVGProps<SVGSVGElement>) {

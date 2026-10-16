@@ -3,7 +3,7 @@
 
 .statementMain {
   padding-top: 0;
-  background-color: $color-ink900;
+  background-color: $color-band;
 }
 
 .statement {
@@ -50,7 +50,7 @@
     .bodyHeading {
       width: 100%;
       max-width: 860px;
-      color: #fff;
+      color: $color-onDark1;
       font-family: $font-main;
       font-size: 36px;
       font-weight: 400;
@@ -84,7 +84,7 @@
         flex-direction: column;
         gap: 4px;
         .statNumber {
-          color: #fff;
+          color: $color-onDark1;
           font-family: $font-main;
           font-size: 56px;
           font-weight: 400;

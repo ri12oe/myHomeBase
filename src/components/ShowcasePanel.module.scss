@@ -3,29 +3,31 @@
 // and scaled to the container width by the component, so px values here are
 // canvas units, not screen pixels.
 //
-// Colors are local custom properties so the module works on its own. To share
-// them with the rest of the site, move them into styles/_variables.scss.
+// Colors: the device screens use `--pl-*` (the palette's LIGHT colors, see
+// styles/_themes.scss), so the product UI stays light even in dark mode —
+// matching the Figma dark pages. The panel background, border and device
+// bezels follow the active theme.
 
 .panel {
-  --sp-ink: #0b1b33;
-  --sp-ink-600: #475569;
-  --sp-ink-500: #64748b;
-  --sp-ink-400: #94a3b8;
-  --sp-line: #e3e8f0;
-  --sp-bg: #f7f9fc;
-  --sp-muted: #f1f4f9;
+  --sp-ink: var(--pl-ink900);
+  --sp-ink-600: var(--pl-ink600);
+  --sp-ink-500: var(--pl-ink500);
+  --sp-ink-400: var(--pl-ink400);
+  --sp-line: var(--pl-border);
+  --sp-bg: var(--pl-background);
+  --sp-muted: var(--pl-surfaceMuted);
   --sp-surface: #ffffff;
-  --sp-blue: #2563eb;
-  --sp-blue-700: #1d4ed8;
-  --sp-blue-500: #3b82f6;
-  --sp-blue-100: #dbe8fe;
-  --sp-blue-50: #eff5ff;
-  --sp-amber-100: #fef3c7;
-  --sp-amber-700: #b45309;
+  --sp-blue: var(--pl-blue600Primary);
+  --sp-blue-700: var(--pl-blue700);
+  --sp-blue-500: var(--pl-blue500);
+  --sp-blue-100: var(--pl-blue100);
+  --sp-blue-50: var(--pl-blue50);
+  --sp-amber-100: var(--pl-amber100);
+  --sp-amber-700: var(--pl-amber700);
   --sp-green-50: #ecfdf5;
   --sp-green-500: #10b981;
   --sp-green-700: #047857;
-  --sp-bezel: #0b1b33;
+  --sp-bezel: var(--color-bezel); // lighter frame in dark mode
   --sp-font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --sp-font-brand: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 
@@ -33,9 +35,14 @@
   width: 100%;
   aspect-ratio: 1200 / 680;
   overflow: hidden;
-  border: 1px solid var(--sp-line);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
-  background: linear-gradient(180deg, #f7faff 0%, var(--sp-blue-100) 45%, var(--sp-blue-500) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-panelTop) 0%,
+    var(--color-blue100) 45%,
+    var(--color-blue500) 100%
+  );
   font-family: var(--sp-font);
   color: var(--sp-ink);
   -webkit-font-smoothing: antialiased;
@@ -51,7 +58,7 @@
   position: absolute;
   inset: 0;
   opacity: 0.8;
-  background-image: radial-gradient(circle, rgba(37, 99, 235, 0.32) 1.5px, transparent 1.8px);
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--color-blue600Primary) 32%, transparent) 1.5px, transparent 1.8px);
   background-size: 16px 16px;
   $fade: linear-gradient(90deg, #000 0%, transparent 28%, transparent 72%, #000 100%);
   -webkit-mask-image: $fade;
@@ -445,7 +452,7 @@
 }
 
 .rowBest {
-  background: #f5f9ff;
+  background: var(--pl-rowBest);
 }
 
 .proCell {

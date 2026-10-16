@@ -1,41 +1,52 @@
 // Colors
+// Each color points at a CSS variable defined in _themes.scss, so the whole
+// site can switch palette (Blue / Pine / Lagoon / Plum / Graphite & Sun) and
+// light/dark mode at runtime. Keep using these $color-* names in components.
 
-// Blue Colors
-$color-blue600Primary: #2563EB;
-$color-blue700: #1D4ED8;
-$color-blue500: #3B82F6;
-$color-blue300: #93B8FD;
-$color-blue200: #BFD5FE;
-$color-blue100: #DBE8FE;
-$color-blue50: #EFF5FF;
+// Brand colors (named "blue" for history — they follow the active palette)
+$color-blue600Primary: var(--color-blue600Primary);
+$color-blue700: var(--color-blue700);
+$color-blue500: var(--color-blue500);
+$color-blue300: var(--color-blue300);
+$color-blue200: var(--color-blue200);
+$color-blue100: var(--color-blue100);
+$color-blue50: var(--color-blue50);
 
 // Ink & neutrals colors
-$color-ink900: #0B1B33; 
-$color-ink600: #475569;
-$color-ink500: #64748B;
-$color-ink400: #94A3B8;
-$color-borderStrong: #D5DCE6;
-$color-border: #E3E8F0;
-$color-surfaceMuted: #F1F4F9;
-
+$color-ink900: var(--color-ink900);
+$color-ink600: var(--color-ink600);
+$color-ink500: var(--color-ink500);
+$color-ink400: var(--color-ink400);
+$color-borderStrong: var(--color-borderStrong);
+$color-border: var(--color-border);
+$color-surfaceMuted: var(--color-surfaceMuted);
 
 // Background colors
-$color-background: #F7F9FC;
-$color-surface: #FFFFFF;
+$color-background: var(--color-background);
+$color-surface: var(--color-surface);
+
+// Dark bands (statement, features) — ink in light mode, a deep tint in dark mode
+$color-band: var(--color-band);
 
 // Text on dark bands
-$color-onDark1: #FFFFFF;
-$color-onDark2: #A9B6C9;
-$color-onDark3: #7D8BA3;
+$color-onDark1: var(--color-onDark1);
+$color-onDark2: var(--color-onDark2);
+$color-onDark3: var(--color-onDark3);
+
+// Text/icons on primary-colored buttons and chips
+$color-onPrimary: var(--color-onPrimary);
+
+// Base color for shadows (ink in light mode, black in dark mode) — use with alpha()
+$color-shadow: var(--color-shadow);
 
 // Accent & semantic
-$color-amber500: #F59E0B;
-$color-amber100: #FEF3C7;
-$color-amber700: #B45309;
-$color-success500: #10B981;
-$color-success50: #ECFDF5;
-$color-success700: #047857;
-$color-error400: #F87171;
+$color-amber500: var(--color-amber500);
+$color-amber100: var(--color-amber100);
+$color-amber700: var(--color-amber700);
+$color-success500: var(--color-success500);
+$color-success50: var(--color-success50);
+$color-success700: var(--color-success700);
+$color-error400: var(--color-error400);
 
 // Fonts Family
 $font-main: 'Instrument Serif', sans-serif;

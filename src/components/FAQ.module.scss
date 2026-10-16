@@ -57,7 +57,7 @@
       align-self: stretch;
       border-radius: 18px;
       border: 1px solid $color-border;
-      background-color: #fff;
+      background-color: $color-surface;
       .buttonFrameIcon {
         display: flex;
         width: 40px;
@@ -132,8 +132,8 @@
       align-self: stretch;
       border-radius: 18px;
       border: 1px solid $color-blue200;
-      background-color: #fff;
-      box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+      background-color: $color-surface;
+      box-shadow: 0 4px 12px 0 alpha($color-shadow, 8%);
       .itemFrame {
         display: flex;
         align-items: center;
@@ -176,7 +176,7 @@
       align-self: stretch;
       border-radius: 18px;
       border: 1px solid $color-border;
-      background-color: #fff;
+      background-color: $color-surface;
       .itemFrame {
         display: flex;
         align-items: center;

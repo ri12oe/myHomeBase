@@ -62,7 +62,7 @@ function CheckMark() {
     >
       <path
         d="M9.16671 2.75L4.12504 7.79167L1.83337 5.5"
-        stroke="white"
+        stroke="var(--color-onPrimary)"
         strokeWidth={1.375}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -195,7 +195,7 @@ export default function HowItWorks() {
                       fill="none"
                       aria-hidden="true"
                     >
-                      <circle cx={4} cy={4} r={4} fill="#2563EB" />
+                      <circle cx={4} cy={4} r={4} fill="var(--color-blue600Primary)" />
                     </svg>
                   </div>
                 )}

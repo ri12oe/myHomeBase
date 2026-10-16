@@ -1,0 +1,147 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+// Floating theme menu, pinned bottom-left so it never covers page content.
+// Sits below the mobile nav sheet (z-index 10), so an open nav menu hides it.
+.themeMenu {
+  position: fixed;
+  left: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-body;
+}
+
+// Round toggle button
+.fab {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  background-color: $color-ink900;
+  color: $color-surface;
+  box-shadow: 0 8px 24px alpha($color-shadow, 25%);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.06);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue600Primary;
+    outline-offset: 3px;
+  }
+
+  .fabIcon {
+    display: flex;
+  }
+}
+
+// Vertical pill of options above the button
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid $color-border;
+  border-radius: 999px;
+  background-color: $color-surface;
+  box-shadow: 0 12px 32px alpha($color-shadow, 18%);
+}
+
+.divider {
+  width: 18px;
+  height: 1px;
+  background-color: $color-border;
+}
+
+// Shared by the mode button and the palette circles
+.modeButton,
+.swatch {
+  position: relative;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue600Primary;
+    outline-offset: 2px;
+  }
+
+  // Label to the right, shown on hover / keyboard focus
+  .tip {
+    position: absolute;
+    left: calc(100% + 14px);
+    top: 50%;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: $color-ink900;
+    color: $color-surface;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-4px, -50%);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  &:hover .tip,
+  &:focus-visible .tip {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+.modeButton {
+  background-color: $color-surfaceMuted;
+  color: $color-ink900;
+}
+
+// Palette circle: primary color with an accent wedge
+.swatch {
+  background: linear-gradient(
+    135deg,
+    var(--swatch-primary) 0 62%,
+    var(--swatch-accent) 62% 100%
+  );
+  box-shadow: inset 0 0 0 1px alpha($color-shadow, 12%);
+
+  &.active {
+    box-shadow:
+      0 0 0 2px $color-surface,
+      0 0 0 4px var(--swatch-primary);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .modeButton,
+  .swatch,
+  .tip {
+    transition: none;
+  }
+}

@@ -117,7 +117,7 @@ export default function FinalCTA() {
                 variants={riseVariants}
               >
                 <div className={style.perkIconFrame}>
-                  <CheckIcon size={12} flex-shrink={0} color="#2563EB" />
+                  <CheckIcon size={12} flex-shrink={0} color="var(--color-blue600Primary)" />
                 </div>
                 <span className={style.perkText}>{perk}</span>
               </m.div>
@@ -151,7 +151,7 @@ export default function FinalCTA() {
                     },
                   }}
                 >
-                  <CheckIcon size={22} color="#fff" />
+                  <CheckIcon size={22} color="var(--color-onPrimary)" />
                 </m.div>
                 <m.h3 variants={riseVariants}>You’re on the list!</m.h3>
                 <m.p className={style.successText} variants={riseVariants}>
@@ -208,7 +208,7 @@ export default function FinalCTA() {
                 <m.div className={style.field} variants={riseVariants}>
                   <label htmlFor="cta-email">Email</label>
                   <div className={style.inputWrapper}>
-                    <Mail size={16} color="#94A3B8" />
+                    <Mail size={16} color="var(--color-ink400)" />
                     <input
                       id="cta-email"
                       type="email"
@@ -221,7 +221,7 @@ export default function FinalCTA() {
                 <m.div className={style.field} variants={riseVariants}>
                   <label htmlFor="cta-zip">Zip code (Optional)</label>
                   <div className={style.inputWrapper}>
-                    <MapPin size={16} color="#94A3B8" />
+                    <MapPin size={16} color="var(--color-ink400)" />
                     <input
                       id="cta-zip"
                       type="text"
@@ -242,10 +242,10 @@ export default function FinalCTA() {
                   <span className={style.buttonPrimaryText}>
                     Get early access
                   </span>
-                  <ArrowRightIcon size={16} color="#fff" />
+                  <ArrowRightIcon size={16} color="var(--color-onPrimary)" />
                 </m.button>
                 <m.div className={style.note} variants={riseVariants}>
-                  <Lock size={12} color="#64748B" />
+                  <Lock size={12} color="var(--color-ink500)" />
                   <span className={style.noteText}>
                     No spam. We never share your email.
                   </span>

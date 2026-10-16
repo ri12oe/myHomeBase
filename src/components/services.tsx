@@ -193,7 +193,7 @@ export default function Services() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, ease: EASE_OUT }}
                   >
-                    <ArrowRightIcon size={24} color="#2563EB" />
+                    <ArrowRightIcon size={24} color="var(--color-blue600Primary)" />
                   </m.span>
                 ) : (
                   <span className={style.servicesNumber}>
@@ -245,7 +245,7 @@ export default function Services() {
                         <ServiceIcon
                           width={28}
                           height={28}
-                          color="#0B1B33"
+                          color="var(--color-ink900)"
                           strokeWidth={2}
                         />
                       </div>
@@ -282,7 +282,7 @@ export default function Services() {
         <span className={style.moreLinkLabel}>
           Don’t see yours? Tell us when you sign up
         </span>
-        <ArrowRightIcon size={16} color="#2563EB" />
+        <ArrowRightIcon size={16} color="var(--color-blue600Primary)" />
       </a>
     </main>
   )

@@ -6,6 +6,7 @@ import MenuIcon from './menuIcon'
 import GreenDot from './GreenDot'
 import XMarkIcon from './xMarkIcon'
 import { EASE_OUT } from './motionPresets'
+import { scrollToTarget, setSmoothScrollPaused } from './smoothScroll'
 
 // Shared by the desktop links and the mobile menu.
 // Each href points at the `id` on that section's root element.
@@ -61,6 +62,8 @@ export default function Navbar() {
       body.style.overflow = mobileQuery.matches
         ? 'hidden'
         : previousBodyOverflow
+      // also pause the smooth (wheel) scrolling while the page is locked
+      setSmoothScrollPaused(mobileQuery.matches)
     }
 
     updateScrollLock()
@@ -70,6 +73,7 @@ export default function Navbar() {
       mobileQuery.removeEventListener('change', updateScrollLock)
       root.style.overflow = previousRootOverflow
       body.style.overflow = previousBodyOverflow
+      setSmoothScrollPaused(false)
     }
   }, [isMenuOpen])
 
@@ -87,8 +91,7 @@ export default function Navbar() {
     event.preventDefault()
     closeMenu()
     window.setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ block: 'start' })
-      window.history.pushState(null, '', href)
+      scrollToTarget(href) // smooth glide + URL update
       afterScroll?.()
     }, 0)
   }

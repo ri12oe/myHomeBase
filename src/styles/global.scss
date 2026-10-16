@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'mixins' as *;
+@use 'themes';
 
 *,
 *::before,
@@ -9,8 +10,10 @@
   padding: 0;
 }
 
-// Nav links glide to their section instead of jumping
-html {
+// Fallback smooth anchor scrolling when Lenis isn't running.
+// When Lenis is on it adds `.lenis` to <html> and does the smoothing itself;
+// leaving CSS smoothing on too would make every Lenis frame lag.
+html:not(.lenis) {
   scroll-behavior: smooth;
 
   @media (prefers-reduced-motion: reduce) {

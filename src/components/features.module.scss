@@ -8,7 +8,7 @@
   align-items: flex-start;
   gap: 72px;
   align-self: stretch;
-  background-color: $color-ink900;
+  background-color: $color-band;
   .bento {
     display: flex;
     width: 1200px;
@@ -34,8 +34,8 @@
           gap: 20px;
           align-self: stretch;
           border-radius: 24px;
-          background-color: #fff;
-          box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+          background-color: $color-surface;
+          box-shadow: 0 1px 2px 0 alpha($color-shadow, 6%);
           .transparentPricingFrame {
             display: flex;
             align-items: center;
@@ -181,8 +181,8 @@
             flex: 1 0 0;
             align-self: stretch;
             border-radius: 24px;
-            background-color: #fff;
-            box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+            background-color: $color-surface;
+            box-shadow: 0 1px 2px 0 alpha($color-shadow, 6%);
             .verifiedFrame {
               display: flex;
               flex-direction: column;
@@ -258,7 +258,7 @@
                   align-items: flex-start;
                   border-radius: 14px 14px 4px 14px;
                   background-color: $color-blue600Primary;
-                  color: #fff;
+                  color: $color-onPrimary;
                   font-family: $font-body;
                   font-size: 12.5px;
                   font-weight: 400;
@@ -277,8 +277,8 @@
         gap: 20px;
         align-self: stretch;
         border-radius: 24px;
-        background: linear-gradient(180deg, #fff 0%, #eff5ff 100%);
-        box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+        background: linear-gradient(180deg, $color-surface 0%, $color-blue50 100%);
+        box-shadow: 0 1px 2px 0 alpha($color-shadow, 6%);
         .verifiedFrame {
           display: flex;
           flex-direction: column;
@@ -311,8 +311,8 @@
           align-self: stretch;
           border-radius: 18px;
           border: 1px solid $color-border;
-          background-color: #fff;
-          box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+          background-color: $color-surface;
+          box-shadow: 0 4px 12px 0 alpha($color-shadow, 8%);
           .contactCardText {
             color: $color-ink500;
             font-family: $font-body;
@@ -379,8 +379,8 @@
       gap: 48px;
       align-self: stretch;
       border-radius: 24px;
-      background-color: #fff;
-      box-shadow: 0 1px 2px 0 rgba(11, 27, 51, 0.06);
+      background-color: $color-surface;
+      box-shadow: 0 1px 2px 0 alpha($color-shadow, 6%);
       .featureJobFrame {
         display: flex;
         width: 340px;
@@ -453,8 +453,8 @@
               align-items: center;
               border-radius: 999px;
               border: 2.5px solid $color-blue600Primary;
-              background-color: #fff;
-              box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25);
+              background-color: $color-surface;
+              box-shadow: 0 0 0 6px alpha($color-blue600Primary, 25%);
               &.completedDot {
                 border: 0;
                 background-color: $color-blue600Primary;
@@ -462,7 +462,7 @@
               }
               &.blurDot {
                 border: 1.5px solid $color-border;
-                background-color: #fff;
+                background-color: $color-surface;
                 box-shadow: none;
               }
               // The step in progress gently pulses
@@ -640,10 +640,10 @@
 @keyframes currentDotPulse {
   0%,
   100% {
-    box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 0 0 6px alpha($color-blue600Primary, 25%);
   }
   50% {
-    box-shadow: 0 0 0 11px rgba(37, 99, 235, 0.08);
+    box-shadow: 0 0 0 11px alpha($color-blue600Primary, 8%);
   }
 }
 

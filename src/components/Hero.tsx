@@ -67,20 +67,20 @@ export default function Hero() {
             </label>
             <button type="submit" className={styles.buttonPrimary}>
               <span className={styles.buttonText}>Get early access</span>
-              <ArrowRightIcon color="#fff" />
+              <ArrowRightIcon color="var(--color-onPrimary)" />
             </button>
           </form>
           <div className={styles.microcopy}>
             <div className={styles.microSubContainer}>
-              <CheckIcon color="#16B981" />
+              <CheckIcon color="var(--color-success500)" />
               <span className={styles.microText}>Free to join</span>
             </div>
             <div className={styles.microSubContainer}>
-              <CheckIcon color="#16B981" />
+              <CheckIcon color="var(--color-success500)" />
               <span className={styles.microText}>No spam, ever</span>
             </div>
             <div className={styles.microSubContainer}>
-              <CheckIcon color="#16B981" />
+              <CheckIcon color="var(--color-success500)" />
               <span className={styles.microText}>Unsubscribe anytime</span>
             </div>
           </div>

@@ -9,7 +9,7 @@
   gap: 32px;
   align-self: stretch;
   border-top: 1px solid $color-border;
-  background-color: #fff;
+  background-color: $color-surface;
   .topFrame {
     display: flex;
     justify-content: space-between;

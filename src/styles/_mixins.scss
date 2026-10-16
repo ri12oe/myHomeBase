@@ -1,5 +1,11 @@
 @use 'variables' as *;
 
+// A theme color at partial opacity, e.g. alpha($color-blue600Primary, 12%).
+// (Sass's rgba() can't read CSS variables, so this uses CSS color-mix.)
+@function alpha($color, $amount) {
+  @return color-mix(in srgb, #{$color} #{$amount}, transparent);
+}
+
 @mixin mobile-only {
   @media (max-width: $breakpoint-md - 1px) {
     @content;

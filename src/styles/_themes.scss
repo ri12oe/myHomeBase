@@ -1,0 +1,359 @@
+// Color themes — 5 palettes × light/dark, matching the Figma "v3 Color" pages
+// and the "v3 — Style guide" page.
+//
+// How it works
+// - Every `$color-*` in _variables.scss is a CSS variable (`var(--color-*)`),
+//   so components keep using `$color-*` and switch theme at runtime.
+// - The palette is chosen with `data-palette` on <html> (none = Blue),
+//   the mode with `data-theme="dark"` (none = light). See themeConfig.ts.
+// - `--pl-*` always hold the palette's LIGHT values. The laptop/phone screens
+//   in the hero use them, so the product UI stays light in dark mode (as in Figma).
+@use 'sass:map';
+
+// Light values per palette (role names match _variables.scss).
+// Dark values per palette (surfaces, tints and text designed for dark mode).
+$palettes: (
+  'blue': (
+    light: (
+      blue600Primary: #2563eb,
+      blue700: #1d4ed8,
+      blue500: #3b82f6,
+      blue300: #93b8fd,
+      blue200: #bfd5fe,
+      blue100: #dbe8fe,
+      blue50: #eff5ff,
+      ink900: #0b1b33,
+      ink600: #475569,
+      ink500: #64748b,
+      ink400: #94a3b8,
+      borderStrong: #d5dce6,
+      border: #e3e8f0,
+      surfaceMuted: #f1f4f9,
+      background: #f7f9fc,
+      surface: #ffffff,
+      onDark2: #a9b6c9,
+      onDark3: #7d8ba3,
+      amber500: #f59e0b,
+      amber100: #fef3c7,
+      amber700: #b45309,
+      panelTop: #f7faff,
+      rowBest: #f5f9ff,
+      onPrimary: #ffffff,
+    ),
+    dark: (
+      background: #0a0f1a,
+      surface: #101725,
+      surfaceMuted: #182133,
+      border: #222d42,
+      borderStrong: #2c384f,
+      band: #0e1f45,
+      bezel: #2b3446,
+      tint1: #101e3a,
+      tint2: #152a52,
+      tint3: #1c3769,
+      primary: #3b82f6,
+      primaryText: #7ea8ff,
+      text1: #edf2f9,
+      text2: #b4c0d2,
+      text3: #8c99ae,
+      text4: #6b788d,
+      accentBg: #3a2a08,
+      accentText: #fcd34d,
+      onPrimary: #ffffff,
+    ),
+  ),
+  'pine': (
+    light: (
+      blue600Primary: #1f6b52,
+      blue700: #17533f,
+      blue500: #2e8a6a,
+      blue300: #8ccab2,
+      blue200: #b9dfd0,
+      blue100: #d9efe6,
+      blue50: #eef7f3,
+      ink900: #0f241d,
+      ink600: #45544e,
+      ink500: #62716b,
+      ink400: #93a19b,
+      borderStrong: #d3dcd8,
+      border: #e2e8e5,
+      surfaceMuted: #f0f4f2,
+      background: #f6f8f7,
+      surface: #ffffff,
+      onDark2: #a7b8b1,
+      onDark3: #7e928a,
+      amber500: #f59e0b,
+      amber100: #fef3c7,
+      amber700: #b45309,
+      panelTop: #f6faf8,
+      rowBest: #f4faf7,
+      onPrimary: #ffffff,
+    ),
+    dark: (
+      background: #0b1310,
+      surface: #111a16,
+      surfaceMuted: #1a2520,
+      border: #24312b,
+      borderStrong: #2e3d36,
+      band: #0e2a20,
+      bezel: #2c3833,
+      tint1: #12241d,
+      tint2: #173328,
+      tint3: #1f4535,
+      primary: #3fa37e,
+      primaryText: #5cc29c,
+      text1: #ecf2ef,
+      text2: #b4c2bc,
+      text3: #8b9a94,
+      text4: #6b7a74,
+      accentBg: #3a2a08,
+      accentText: #fcd34d,
+      onPrimary: #ffffff,
+    ),
+  ),
+  'lagoon': (
+    light: (
+      blue600Primary: #0e7c86,
+      blue700: #0a5f67,
+      blue500: #1497a3,
+      blue300: #86ccd2,
+      blue200: #b5e1e4,
+      blue100: #d6eff1,
+      blue50: #ecf7f8,
+      ink900: #08262b,
+      ink600: #42565a,
+      ink500: #5f7478,
+      ink400: #91a3a6,
+      borderStrong: #d0dddf,
+      border: #e0e9ea,
+      surfaceMuted: #eff4f5,
+      background: #f5f9f9,
+      surface: #ffffff,
+      onDark2: #a3b9bc,
+      onDark3: #7a9397,
+      amber500: #f0764a,
+      amber100: #fde6dc,
+      amber700: #b2462a,
+      panelTop: #f5fafb,
+      rowBest: #f3fafb,
+      onPrimary: #ffffff,
+    ),
+    dark: (
+      background: #091314,
+      surface: #0f1a1c,
+      surfaceMuted: #172427,
+      border: #213134,
+      borderStrong: #2b3e41,
+      band: #062b30,
+      bezel: #2a383a,
+      tint1: #0e2629,
+      tint2: #123236,
+      tint3: #18444a,
+      primary: #1a97a2,
+      primaryText: #4cc3cd,
+      text1: #eaf3f4,
+      text2: #b0c3c5,
+      text3: #889c9f,
+      text4: #687c7f,
+      accentBg: #3a2019,
+      accentText: #f7a584,
+      onPrimary: #ffffff,
+    ),
+  ),
+  'plum': (
+    light: (
+      blue600Primary: #5b3fd1,
+      blue700: #4830b0,
+      blue500: #7258e3,
+      blue300: #b4a6f2,
+      blue200: #d2c9f8,
+      blue100: #e7e1fc,
+      blue50: #f3f0fe,
+      ink900: #1a1433,
+      ink600: #52506a,
+      ink500: #6e6b86,
+      ink400: #a09db5,
+      borderStrong: #d9d6e6,
+      border: #e7e5f0,
+      surfaceMuted: #f3f2f8,
+      background: #f8f7fc,
+      surface: #ffffff,
+      onDark2: #b1adc8,
+      onDark3: #8783a3,
+      amber500: #f59e0b,
+      amber100: #fef3c7,
+      amber700: #b45309,
+      panelTop: #f9f8ff,
+      rowBest: #f8f6ff,
+      onPrimary: #ffffff,
+    ),
+    dark: (
+      background: #0e0c16,
+      surface: #15121f,
+      surfaceMuted: #1e1a2b,
+      border: #2a2539,
+      borderStrong: #352f47,
+      band: #1e1640,
+      bezel: #332d45,
+      tint1: #1c1733,
+      tint2: #251d45,
+      tint3: #30265a,
+      primary: #7259e6,
+      primaryText: #a493f5,
+      text1: #efedf7,
+      text2: #bdb9d0,
+      text3: #9591ac,
+      text4: #726e8a,
+      accentBg: #3a2a08,
+      accentText: #fcd34d,
+      onPrimary: #ffffff,
+    ),
+  ),
+  'graphite': (
+    light: (
+      blue600Primary: #1c1c1e,
+      blue700: #000000,
+      blue500: #3a3a3d,
+      blue300: #f5c518,
+      blue200: #d6d5d0,
+      blue100: #eeede8,
+      blue50: #f5f4f0,
+      ink900: #141416,
+      ink600: #4a4a4f,
+      ink500: #6b6b70,
+      ink400: #9e9ea3,
+      borderStrong: #d8d7d2,
+      border: #e7e6e2,
+      surfaceMuted: #f2f1ee,
+      background: #f7f7f5,
+      surface: #ffffff,
+      onDark2: #b5b5b8,
+      onDark3: #8a8a8f,
+      amber500: #f5c518,
+      amber100: #fdf3c4,
+      amber700: #7a5d00,
+      panelTop: #fafaf8,
+      rowBest: #f9f8f5,
+      onPrimary: #ffffff,
+    ),
+    dark: (
+      background: #0c0c0d,
+      surface: #141415,
+      surfaceMuted: #1e1e20,
+      border: #2a2a2c,
+      borderStrong: #353538,
+      band: #1a1a1c,
+      bezel: #3a3a3d,
+      tint1: #18181a,
+      tint2: #242426,
+      tint3: #2e2e31,
+      // Graphite flips its buttons to light-on-dark in dark mode
+      primary: #f2f2f0,
+      primaryText: #f5c518,
+      blue500: #353538,
+      text1: #f2f2f0,
+      text2: #bdbdbf,
+      text3: #949498,
+      text4: #727276,
+      accentBg: #332a08,
+      accentText: #f5c518,
+      onPrimary: #0c0c0d,
+    ),
+  ),
+);
+
+// Colors that don't change between palettes
+@mixin fixed-tokens {
+  --color-onDark1: #ffffff;
+  --color-success500: #10b981;
+  --color-error400: #f87171;
+}
+
+@mixin light-tokens($light) {
+  @each $role, $value in $light {
+    --color-#{$role}: #{$value};
+    --pl-#{$role}: #{$value}; // light copy for the device screens
+  }
+  // the dark bands (statement, features) and shadows use the ink color
+  --color-band: #{map.get($light, ink900)};
+  --color-shadow: #{map.get($light, ink900)};
+  --color-bezel: #{map.get($light, ink900)};
+  --color-success50: #ecfdf5;
+  --color-success700: #047857;
+  color-scheme: light;
+}
+
+@mixin dark-tokens($light, $dark) {
+  // brand + tints
+  --color-blue600Primary: #{map.get($dark, primary)};
+  --color-blue700: #{map.get($dark, primaryText)};
+  --color-blue500: #{map.get($dark, blue500) or map.get($light, blue500)};
+  --color-blue300: #{map.get($light, blue300)};
+  --color-blue200: #{map.get($dark, tint3)};
+  --color-blue100: #{map.get($dark, tint2)};
+  --color-blue50: #{map.get($dark, tint1)};
+  // text
+  --color-ink900: #{map.get($dark, text1)};
+  --color-ink600: #{map.get($dark, text2)};
+  --color-ink500: #{map.get($dark, text3)};
+  --color-ink400: #{map.get($dark, text4)};
+  // surfaces + lines
+  --color-background: #{map.get($dark, background)};
+  --color-surface: #{map.get($dark, surface)};
+  --color-surfaceMuted: #{map.get($dark, surfaceMuted)};
+  --color-border: #{map.get($dark, border)};
+  --color-borderStrong: #{map.get($dark, borderStrong)};
+  --color-panelTop: #{map.get($dark, surface)};
+  --color-rowBest: #{map.get($dark, tint1)};
+  --color-band: #{map.get($dark, band)};
+  --color-bezel: #{map.get($dark, bezel)};
+  --color-shadow: #000000;
+  // accents + status
+  --color-amber100: #{map.get($dark, accentBg)};
+  --color-amber700: #{map.get($dark, accentText)};
+  --color-success50: #0f2e24;
+  --color-success700: #6ee7b7;
+  --color-onPrimary: #{map.get($dark, onPrimary)};
+  color-scheme: dark;
+}
+
+// Default: Blue, light
+:root {
+  @include fixed-tokens;
+  @include light-tokens(map.get($palettes, 'blue', light));
+}
+
+// Other palettes, light
+@each $name, $palette in $palettes {
+  @if $name != 'blue' {
+    :root[data-palette='#{$name}'] {
+      @include light-tokens(map.get($palette, light));
+    }
+  }
+}
+
+// Dark mode for each palette (more specific, so it wins over the light rules)
+@each $name, $palette in $palettes {
+  $selector: ":root[data-theme='dark'][data-palette='#{$name}']";
+  @if $name == 'blue' {
+    $selector: ":root[data-theme='dark']";
+  }
+  #{$selector} {
+    @include dark-tokens(map.get($palette, light), map.get($palette, dark));
+  }
+}
+
+// While switching theme, ease the color change instead of snapping.
+// Added/removed for a moment by themeConfig.ts.
+:root.theme-switching,
+:root.theme-switching *,
+:root.theme-switching *::before,
+:root.theme-switching *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    fill 0.35s ease,
+    stroke 0.35s ease,
+    box-shadow 0.35s ease !important;
+}
