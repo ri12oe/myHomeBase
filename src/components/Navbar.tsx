@@ -1,18 +1,22 @@
 import styles from './Navbar.module.scss'
 import BrandLogo from './BrandLogo'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, type MouseEvent } from 'react'
 import { AnimatePresence, m, type Variants } from 'motion/react'
 import MenuIcon from './menuIcon'
 import GreenDot from './GreenDot'
 import XMarkIcon from './xMarkIcon'
 import { EASE_OUT } from './motionPresets'
 
-const MOBILE_LINKS = [
-  { index: '(03)', label: 'How it works', href: '#' },
-  { index: '(04)', label: 'Features', href: '#' },
-  { index: '(05)', label: 'Services', href: '#' },
-  { index: '(06)', label: 'FAQ', href: '#' },
+// Shared by the desktop links and the mobile menu.
+// Each href points at the `id` on that section's root element.
+const NAV_LINKS = [
+  { index: '(03)', label: 'How it works', href: '#how-it-works' },
+  { index: '(04)', label: 'Features', href: '#features' },
+  { index: '(05)', label: 'Services', href: '#services' },
+  { index: '(06)', label: 'FAQ', href: '#faq' },
 ]
+
+const EARLY_ACCESS_HREF = '#early-access'
 
 // Sheet fades/slides down, then its children rise in one after another.
 // On close the whole sheet fades out quickly (children don't re-stagger).
@@ -21,7 +25,12 @@ const sheetVariants: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: EASE_OUT, delayChildren: 0.06, staggerChildren: 0.05 },
+    transition: {
+      duration: 0.3,
+      ease: EASE_OUT,
+      delayChildren: 0.06,
+      staggerChildren: 0.05,
+    },
   },
   exit: { opacity: 0, y: -8, transition: { duration: 0.2, ease: 'easeIn' } },
 }
@@ -34,6 +43,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuId = useId()
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const menuEmailRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!isMenuOpen) return
@@ -66,6 +76,38 @@ export default function Navbar() {
   function closeMenu() {
     setIsMenuOpen(false)
   }
+
+  // Mobile menu links: close the menu (which releases the scroll lock) first,
+  // then scroll on the next tick so the jump isn't blocked by the lock.
+  function goToSection(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+    afterScroll?: () => void,
+  ) {
+    event.preventDefault()
+    closeMenu()
+    window.setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({ block: 'start' })
+      window.history.pushState(null, '', href)
+      afterScroll?.()
+    }, 0)
+  }
+
+  // Menu "Get early access": carry whatever was typed into the final CTA's
+  // email field and put the cursor there, so nothing has to be typed twice.
+  function goToSignup(event: MouseEvent<HTMLAnchorElement>) {
+    // read now — the menu (and this input) unmounts when it closes
+    const typedEmail = menuEmailRef.current?.value.trim() ?? ''
+    goToSection(event, EARLY_ACCESS_HREF, () => {
+      const signupEmail = document.getElementById(
+        'cta-email',
+      ) as HTMLInputElement | null
+      if (!signupEmail) return
+      if (typedEmail) signupEmail.value = typedEmail
+      signupEmail.focus({ preventScroll: true }) // don't cut the smooth scroll short
+    })
+  }
+
   return (
     <nav
       className={styles.nav}
@@ -105,26 +147,19 @@ export default function Navbar() {
 
       <div className={styles.desktopContent}>
         <div className={styles.links}>
-          <a href="#" onClick={closeMenu}>
-            How it works
-          </a>
-          <a href="#" onClick={closeMenu}>
-            Features
-          </a>
-          <a href="#" onClick={closeMenu}>
-            Services
-          </a>
-          <a href="#" onClick={closeMenu}>
-            FAQ
-          </a>
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} onClick={closeMenu}>
+              {link.label}
+            </a>
+          ))}
         </div>
-        <button
-          type="button"
+        <a
+          href={EARLY_ACCESS_HREF}
           className={styles.buttonPrimary}
           onClick={closeMenu}
         >
           Get early access
-        </button>
+        </a>
       </div>
       <AnimatePresence>
         {isMenuOpen && (
@@ -138,11 +173,11 @@ export default function Navbar() {
             exit="exit"
           >
             <div className={styles.mobileLinks}>
-              {MOBILE_LINKS.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <m.a
                   key={link.label}
                   href={link.href}
-                  onClick={closeMenu}
+                  onClick={(event) => goToSection(event, link.href)}
                   variants={itemVariants}
                 >
                   <span className={styles.mobileLinkIndex}>{link.index}</span>
@@ -159,14 +194,20 @@ export default function Navbar() {
               <span className={styles.callout}>
                 See prices before you book. Free to join, no spam.
               </span>
-              <input type="email" placeholder="Enter your email" required />
-              <button
-                type="button"
+              <input
+                ref={menuEmailRef}
+                type="email"
+                placeholder="Enter your email"
+                aria-label="Email address"
+                autoComplete="email"
+              />
+              <a
+                href={EARLY_ACCESS_HREF}
                 className={styles.buttonPrimary}
-                onClick={closeMenu}
+                onClick={goToSignup}
               >
                 Get early access →
-              </button>
+              </a>
             </m.div>
             <m.footer variants={itemVariants}>
               <span className={styles.brandContact}>hello@myhomebase.com</span>

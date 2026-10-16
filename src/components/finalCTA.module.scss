@@ -15,7 +15,7 @@
     gap: 64px;
     align-self: stretch;
     border-radius: 20px;
-    border-color: 1px solid $color-blue100;
+    border: 1px solid $color-blue100;
     background-color: $color-blue50;
     .CTACopy {
       display: flex;
@@ -98,6 +98,38 @@
       border: 1px solid $color-border;
       background-color: #fff;
       box-shadow: 0 16px 40px 0 rgba(37, 99, 235, 0.1);
+      // Animated wrappers for the form ↔ success swap.
+      // Inherit the card's column + gap so the layout is unchanged.
+      .formFields,
+      .success {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        gap: inherit;
+      }
+      .success {
+        align-items: center;
+        padding: 32px 0;
+        text-align: center;
+      }
+      .successIcon {
+        display: flex;
+        width: 52px;
+        height: 52px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 999px;
+        background-color: $color-success500;
+        box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+      }
+      .successText {
+        max-width: 300px;
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 15px;
+        line-height: 1.5;
+      }
       h3 {
         align-self: stretch;
         color: $color-ink900;
@@ -227,6 +259,16 @@
         background-color: $color-blue600Primary;
         cursor: pointer;
         border: none;
+        transition: background-color 0.2s ease;
+        svg {
+          transition: transform 0.2s ease;
+        }
+        &:hover {
+          background-color: $color-blue700;
+          svg {
+            transform: translateX(3px);
+          }
+        }
         .buttonPrimaryText {
           color: #fff;
           font-family: $font-body;

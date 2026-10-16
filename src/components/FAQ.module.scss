@@ -97,6 +97,32 @@
     align-items: flex-start;
     gap: 12px;
     flex: 1 0 0;
+    // Shared by open + closed items, so the answer keeps its look while it collapses
+    .FAQItemOpen,
+    .FAQItemClosed {
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+      .itemButton {
+        cursor: pointer;
+        transition: background-color 0.25s ease;
+      }
+      .itemIcon {
+        display: flex;
+      }
+      .answerWrap {
+        overflow: hidden;
+        align-self: stretch;
+      }
+      .itemDescp {
+        align-self: stretch;
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+      }
+    }
     .FAQItemOpen {
       display: flex;
       padding: 22px 24px 24px 24px;

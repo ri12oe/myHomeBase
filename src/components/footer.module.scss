@@ -82,6 +82,11 @@
       font-weight: 400;
       line-height: 100%;
       letter-spacing: -0.25px;
+      white-space: nowrap;
+      // letters are split into spans so each can rise on its own
+      .wordMarkLetter {
+        display: inline-block;
+      }
     }
 
     @include mobile-only {

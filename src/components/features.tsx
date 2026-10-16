@@ -97,7 +97,7 @@ export default function Features() {
   const [scrambleRun, setScrambleRun] = useState(0)
 
   return (
-    <main className={style.featureMain}>
+    <main id="features" className={style.featureMain}>
       <HeaderRow
         labelNumber="(04)"
         labelText="Features"

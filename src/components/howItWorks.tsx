@@ -84,7 +84,7 @@ function StepHeading({ number, title }: { number: number; title: string }) {
 
 export default function HowItWorks() {
   return (
-    <main className={styles.howitWorksMain}>
+    <main id="how-it-works" className={styles.howitWorksMain}>
       <HeaderRow
         labelNumber="(03)"
         labelText="HOW IT WORKS"

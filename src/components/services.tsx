@@ -1,5 +1,12 @@
 import { useState } from 'react'
+import { AnimatePresence, m, type Variants } from 'motion/react'
 import style from './services.module.scss'
+import {
+  EASE_OUT,
+  revealOnScroll,
+  riseVariants,
+  staggerVariants,
+} from './motionPresets'
 import HeaderRow from './HeaderRow'
 import ArrowRightIcon from './ArrowRightIcon'
 import SparklesIcon from './SparklesIcon'
@@ -116,30 +123,57 @@ const serviceGroups = [
   },
 ]
 
+// Switching category: old content slides out quickly, then the new one
+// slides in with its services one after another.
+const swapVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.35,
+      ease: EASE_OUT,
+      delayChildren: 0.05,
+      staggerChildren: 0.05,
+    },
+  },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: 'easeIn' } },
+}
+
+const serviceRowVariants: Variants = {
+  hidden: { opacity: 0, x: -10 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.35, ease: EASE_OUT } },
+}
+
 export default function Services() {
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
   const selectedGroup = serviceGroups[selectedGroupIndex]
 
   return (
-    <main className={style.servicesMain}>
+    <main id="services" className={style.servicesMain}>
       <HeaderRow
         labelNumber="(05)"
         labelText="Services"
         title="One app for the whole house."
         description="Launching with the services homeowners book most — and adding more every month."
       />
-      <div className={style.serviceIndex}>
-        <div className={style.categories}>
+      <m.div
+        className={style.serviceIndex}
+        variants={staggerVariants(0.1)}
+        {...revealOnScroll}
+      >
+        <m.div className={style.categories} variants={staggerVariants(0.06)}>
           {serviceGroups.map((group, index) => {
             const isSelected = index === selectedGroupIndex
 
             return (
-              <button
+              <m.button
                 key={group.name}
                 type="button"
                 className={`${style.category} ${isSelected ? style.selectedCategory : ''}`}
                 aria-pressed={isSelected}
                 onClick={() => setSelectedGroupIndex(index)}
+                variants={riseVariants}
               >
                 <span
                   className={`${style.categoryLabel} ${isSelected ? style.highlight : ''}`}
@@ -152,69 +186,98 @@ export default function Services() {
                   {group.name}
                 </span>
                 {isSelected ? (
-                  <ArrowRightIcon size={24} color="#2563EB" />
+                  // slides in each time a category becomes selected
+                  <m.span
+                    className={style.selectedArrow}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, ease: EASE_OUT }}
+                  >
+                    <ArrowRightIcon size={24} color="#2563EB" />
+                  </m.span>
                 ) : (
                   <span className={style.servicesNumber}>
                     {group.services.length} services
                   </span>
                 )}
-              </button>
+              </m.button>
             )
           })}
-        </div>
-        <div className={style.categoriesDetail} aria-live="polite">
-          <div className={style.detailFrameTop}>
-            <div className={style.detailFrameInner}>
-              <span className={style.detailLabel}>{selectedGroup.name}</span>
-              <span className={style.detailDescription}>
-                {selectedGroup.description}
-              </span>
-            </div>
-            <span className={style.detailNumberContent}>
-              {selectedGroupIndex + 1} / {serviceGroups.length}
-            </span>
-          </div>
-          <div className={style.detailFrameMiddle}>
-            {selectedGroup.services.map((service) => {
-              const ServiceIcon = service.icon
-
-              return (
-                <div
-                  className={style.detailFrameMiddleInner}
-                  key={service.name}
-                >
-                  <div className={style.IconTile}>
-                    <ServiceIcon
-                      width={28}
-                      height={28}
-                      color="#0B1B33"
-                      strokeWidth={2}
-                    />
-                  </div>
-                  <div className={style.detailContent}>
-                    <span className={style.detailContentLabel}>
-                      {service.name}
-                    </span>
-                    <span className={style.detailContentDescription}>
-                      {service.description}
-                    </span>
-                  </div>
+        </m.div>
+        <m.div
+          className={style.categoriesDetail}
+          aria-live="polite"
+          variants={riseVariants}
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <m.div
+              key={selectedGroup.name}
+              className={style.detailSwap}
+              variants={swapVariants}
+              initial="hidden"
+              animate="show"
+              exit="exit"
+            >
+              <div className={style.detailFrameTop}>
+                <div className={style.detailFrameInner}>
+                  <span className={style.detailLabel}>
+                    {selectedGroup.name}
+                  </span>
+                  <span className={style.detailDescription}>
+                    {selectedGroup.description}
+                  </span>
                 </div>
-              )
-            })}
-          </div>
-          <div className={style.detailFrameBottom}>
-            <span className={style.detailFrameBottomLabel}>
-              You’ll tell us:
-            </span>
-            {selectedGroup.details.map((detail) => (
-              <div className={style.detailFramePill} key={detail}>
-                <span className={style.detailFramePillLabel}>{detail}</span>
+                <span className={style.detailNumberContent}>
+                  {selectedGroupIndex + 1} / {serviceGroups.length}
+                </span>
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
+              <div className={style.detailFrameMiddle}>
+                {selectedGroup.services.map((service) => {
+                  const ServiceIcon = service.icon
+
+                  return (
+                    <m.div
+                      className={style.detailFrameMiddleInner}
+                      key={service.name}
+                      variants={serviceRowVariants}
+                    >
+                      <div className={style.IconTile}>
+                        <ServiceIcon
+                          width={28}
+                          height={28}
+                          color="#0B1B33"
+                          strokeWidth={2}
+                        />
+                      </div>
+                      <div className={style.detailContent}>
+                        <span className={style.detailContentLabel}>
+                          {service.name}
+                        </span>
+                        <span className={style.detailContentDescription}>
+                          {service.description}
+                        </span>
+                      </div>
+                    </m.div>
+                  )
+                })}
+              </div>
+              <m.div
+                className={style.detailFrameBottom}
+                variants={serviceRowVariants}
+              >
+                <span className={style.detailFrameBottomLabel}>
+                  You’ll tell us:
+                </span>
+                {selectedGroup.details.map((detail) => (
+                  <div className={style.detailFramePill} key={detail}>
+                    <span className={style.detailFramePillLabel}>{detail}</span>
+                  </div>
+                ))}
+              </m.div>
+            </m.div>
+          </AnimatePresence>
+        </m.div>
+      </m.div>
       <a href="#" className={style.moreLink}>
         <span className={style.moreLinkLabel}>
           Don’t see yours? Tell us when you sign up
