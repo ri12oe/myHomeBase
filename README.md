@@ -4,6 +4,8 @@
 
 Pre-launch marketing site for **myHomeBase**, a home-services marketplace where homeowners compare upfront prices from verified local pros (cleaning, lawn care, repairs and more), book in a few taps, and chat in-app — without their phone number being passed to a dozen companies.
 
+# NOTE: This is not an offical website, its a more of showcase/demo of the index page only
+
 The page has one job: get visitors to **sign up for early access**.
 
 ![Desktop hero — headline, email signup, and the product on a laptop and two phones](docs/screenshots/hero-desktop.png)
