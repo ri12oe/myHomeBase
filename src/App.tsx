@@ -1,11 +1,8 @@
 import { useEffect } from 'react'
 import { LazyMotion, MotionConfig, domAnimation } from 'motion/react'
 import { startSmoothScroll } from './components/smoothScroll'
+import ConceptBanner from './components/ConceptBanner'
 import ThemeMenu from './components/ThemeMenu'
-
-// Floating palette / light-dark switcher (bottom-left). Set to false to hide it
-// before launch — the site then stays on the default Blue, light theme.
-const SHOW_THEME_MENU = true
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import PromiseStrip from './components/promisStrip'
@@ -17,6 +14,15 @@ import Services from './components/services'
 import FAQ from './components/FAQ'
 import FinalCTA from './components/finalCTA'
 import Footer from './components/footer'
+
+// "Design concept — not affiliated with MyHomeBase" bar above the nav.
+// Keep it on while this is an unofficial concept.
+const SHOW_CONCEPT_BANNER = true
+
+// Floating palette / light-dark switcher (bottom-left). Set to false to hide it
+// before launch — the site then stays on the default Blue, light theme.
+const SHOW_THEME_MENU = true
+
 export default function App() {
   // Soft, eased wheel/trackpad scrolling for the whole page (see smoothScroll.ts)
   useEffect(() => startSmoothScroll(), [])
@@ -27,6 +33,7 @@ export default function App() {
     // reducedMotion="user" skips movement for people who turn motion off on their device.
     <LazyMotion features={domAnimation} strict>
       <MotionConfig reducedMotion="user">
+        {SHOW_CONCEPT_BANNER && <ConceptBanner />}
         <Navbar />
         <Hero />
         <PromiseStrip />

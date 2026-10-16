@@ -21,6 +21,15 @@ html:not(.lenis) {
   }
 }
 
+// Height of the "Design concept" banner above the nav (0 when it's not shown).
+// The mobile menu uses it to open just below the nav.
+:root {
+  --concept-banner-height: 0px;
+}
+:root:has([data-concept-banner]) {
+  --concept-banner-height: 32px;
+}
+
 #root {
   width: 100%;
 }

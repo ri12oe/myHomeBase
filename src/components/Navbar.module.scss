@@ -41,7 +41,9 @@
   .menuContent {
     display: none;
     position: fixed;
-    top: 68px;
+    top: calc(
+      68px + var(--concept-banner-height, 0px)
+    ); // nav height (+ concept banner)
     left: 0;
     right: 0;
     bottom: 0;
