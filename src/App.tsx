@@ -8,6 +8,7 @@ import Features from './components/features'
 import Services from './components/services' 
 import FAQ from './components/FAQ'
 import FinalCTA from './components/finalCTA'
+import Footer from './components/footer'
 export default function App() {
   return (
     <>
@@ -21,6 +22,7 @@ export default function App() {
       <Services />
       <FAQ />
       <FinalCTA />
+      <Footer />
     </>
   )
 }

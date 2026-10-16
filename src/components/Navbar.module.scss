@@ -156,50 +156,7 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
-    color: $color-ink900;
-    font-family: $font-logo;
-    font-weight: 800;
-    letter-spacing: -0.41px;
-    font-size: 20.48px;
-    line-height: normal;
-    font-style: normal;
-
-    @include phone-up {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 17.92px;
-      letter-spacing: -0.358px;
-    }
-
-    .logoText {
-      span {
-        color: $color-blue600Primary;
-      }
-    }
-    .logoMark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      flex-shrink: 0;
-      border-radius: 8.96px;
-      background: linear-gradient(
-        135deg,
-        $color-blue500 25%,
-        $color-blue700 75%
-      );
-      @include phone-up {
-        width: 28px;
-        height: 28px;
-        justify-content: center;
-        align-items: center;
-        border-radius: 7.84px;
-      }
-    }
   }
 
   .links {

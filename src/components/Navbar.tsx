@@ -1,5 +1,5 @@
 import styles from './Navbar.module.scss'
-import HomeIcon from './HomeIcon'
+import BrandLogo from './BrandLogo'
 import { useEffect, useId, useRef, useState } from 'react'
 import MenuIcon from './menuIcon'
 import GreenDot from './GreenDot'
@@ -52,12 +52,7 @@ export default function Navbar() {
       }}
     >
       <a href="#" className={styles.logo}>
-        <div className={styles.logoMark}>
-          <HomeIcon />
-        </div>
-        <span className={styles.logoText}>
-          <span>my</span>HomeBase
-        </span>
+        <BrandLogo />
       </a>
       <button
         ref={toggleRef}

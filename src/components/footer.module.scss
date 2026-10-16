@@ -1,0 +1,190 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.pageFooter {
+  display: flex;
+  padding: 48px 120px 0 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+  border-top: 1px solid $color-border;
+  background-color: #fff;
+  .topFrame {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    .brandLogoFrame {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      .shortDesp {
+        color: $color-ink500;
+        font-family: $font-body;
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+    .linksFrame {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+      span,
+      a {
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+    }
+  }
+  .rule {
+    height: 1px;
+    align-self: stretch;
+    background-color: $color-border;
+  }
+  .middleFrame {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    .copyright {
+      color: $color-ink500;
+      font-family: $font-body;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .callout {
+      color: $color-ink400;
+      font-family: $font-body;
+      font-size: 13px;
+      font-weight: 400;
+    }
+  }
+  .wordMark {
+    display: flex;
+    width: calc(100% + 240px);
+    height: 250px;
+    margin-inline: -120px;
+    padding-top: 6px;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: stretch;
+    overflow-x: visible;
+    overflow-y: clip;
+    .wordMarkText {
+      font-family: $font-main;
+      color: $color-ink900;
+      font-size: 275px;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -0.25px;
+    }
+
+    @include mobile-only {
+      height: 118px;
+      margin-inline: -32px;
+      width: calc(100% + 64px);
+
+      .wordMarkText {
+        font-size: 138px;
+      }
+    }
+
+    @media (max-width: 639px) {
+      height: 80px;
+
+      .wordMarkText {
+        font-size: 100px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      height: 60px;
+
+      .wordMarkText {
+        font-size: 76px;
+      }
+    }
+
+    @media (max-width: 359px) {
+      height: 44px;
+
+      .wordMarkText {
+        font-size: 60px;
+      }
+    }
+
+    @include tablet-up {
+      height: 140px;
+
+      .wordMarkText {
+        font-size: 160px;
+      }
+    }
+
+    @include desktop-up {
+      height: 180px;
+
+      .wordMarkText {
+        font-size: 200px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      height: 250px;
+
+      .wordMarkText {
+        font-size: 275px;
+      }
+    }
+  }
+
+  @include mobile-only {
+    padding: 32px 32px 0;
+    gap: 24px;
+
+    .topFrame {
+      gap: 20px;
+
+      .linksFrame {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+
+        a {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .middleFrame {
+      gap: 12px;
+
+      .copyright,
+      .callout {
+        font-size: 12px;
+      }
+    }
+  }
+
+  @media (max-width: 479px) {
+    .topFrame {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .linksFrame {
+        justify-content: flex-start;
+      }
+    }
+
+    .middleFrame {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+}
