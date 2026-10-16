@@ -1,0 +1,242 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.faqMain {
+  display: flex;
+  padding: 112px 120px;
+  align-items: flex-start;
+  gap: 80px;
+  align-self: stretch;
+  background-color: $color-background;
+  .faqHeading {
+    display: flex;
+    width: 380px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .labelNumber {
+        color: $color-blue600Primary;
+        font-family: $font-body;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .labelText {
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.96px;
+      }
+    }
+    .sectionTitle {
+      align-self: stretch;
+      color: $color-ink900;
+      font-family: $font-main;
+      font-size: 68px;
+      font-weight: 400;
+      line-height: 66.64px;
+      letter-spacing: -1.36px;
+    }
+    .sectionDescp {
+      align-self: stretch;
+      color: $color-ink600;
+      font-family: $font-body;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 27px;
+    }
+    .contactBox {
+      display: flex;
+      padding: 18px;
+      align-items: center;
+      gap: 14px;
+      align-self: stretch;
+      border-radius: 18px;
+      border: 1px solid $color-border;
+      background-color: #fff;
+      .buttonFrameIcon {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        background-color: $color-blue100;
+      }
+      .buttonFrame {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        flex: 1 0 0;
+        .buttonTitle {
+          align-self: stretch;
+          color: $color-ink900;
+          font-family: $font-body;
+          font-size: 15px;
+          font-weight: 600;
+        }
+        .buttonDescp {
+          align-self: stretch;
+          color: $color-blue600Primary;
+          font-family: $font-body;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    flex: 1 0 0;
+    .FAQItemOpen {
+      display: flex;
+      padding: 22px 24px 24px 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      align-self: stretch;
+      border-radius: 18px;
+      border: 1px solid $color-blue200;
+      background-color: #fff;
+      box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+      .itemFrame {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        align-self: stretch;
+        .itemTitle {
+          flex: 1 0 0;
+          color: $color-ink900;
+          font-family: $font-body;
+          font-size: 17.5px;
+          font-weight: 600;
+          letter-spacing: -0.175px;
+        }
+        .itemButton {
+          display: flex;
+          width: 30px;
+          height: 30px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 999px;
+          background-color: $color-blue600Primary;
+          border: none;
+        }
+      }
+      .itemDescp {
+        align-self: stretch;
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+      }
+    }
+    .FAQItemClosed {
+      display: flex;
+      padding: 22px 24px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      align-self: stretch;
+      border-radius: 18px;
+      border: 1px solid $color-border;
+      background-color: #fff;
+      .itemFrame {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        align-self: stretch;
+        .itemTitle {
+          flex: 1 0 0;
+          color: $color-ink900;
+          font-family: $font-body;
+          font-size: 17.5px;
+          font-weight: 600;
+          letter-spacing: -0.175px;
+        }
+        .itemButton {
+          display: flex;
+          width: 30px;
+          height: 30px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 999px;
+          background-color: $color-surfaceMuted;
+          border: none;
+        }
+      }
+    }
+  }
+
+  @include mobile-only {
+    padding: 64px 20px;
+    flex-direction: column;
+    gap: 40px;
+
+    .faqHeading {
+      width: 100%;
+      gap: 20px;
+
+      .sectionTitle {
+        font-size: 44px;
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      .sectionDescp {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .contactBox {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px;
+      }
+    }
+
+    .accordion {
+      width: 100%;
+      flex: 1 1 auto;
+      gap: 10px;
+
+      .FAQItemOpen,
+      .FAQItemClosed {
+        padding: 18px 16px;
+        border-radius: 14px;
+
+        .itemFrame {
+          align-items: flex-start;
+          gap: 12px;
+
+          .itemTitle {
+            min-width: 0;
+            flex: 1 1 auto;
+            font-size: 16px;
+            line-height: 1.4;
+            letter-spacing: 0;
+          }
+
+          .itemButton {
+            flex: 0 0 30px;
+          }
+        }
+
+        .itemDescp {
+          font-size: 15px;
+          line-height: 1.55;
+        }
+      }
+    }
+  }
+}

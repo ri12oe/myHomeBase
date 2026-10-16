@@ -6,6 +6,7 @@ import Comparsion from './components/comparsion'
 import HowItWorks from './components/howItWorks'
 import Features from './components/features' 
 import Services from './components/services' 
+import FAQ from './components/FAQ'
 export default function App() {
   return (
     <>
@@ -17,6 +18,7 @@ export default function App() {
       <HowItWorks />
       <Features />
       <Services />
+      <FAQ />
     </>
   )
 }
