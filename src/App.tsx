@@ -7,6 +7,7 @@ import HowItWorks from './components/howItWorks'
 import Features from './components/features' 
 import Services from './components/services' 
 import FAQ from './components/FAQ'
+import FinalCTA from './components/finalCTA'
 export default function App() {
   return (
     <>
@@ -19,6 +20,7 @@ export default function App() {
       <Features />
       <Services />
       <FAQ />
+      <FinalCTA />
     </>
   )
 }

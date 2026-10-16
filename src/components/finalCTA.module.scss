@@ -1,0 +1,323 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.finalMain {
+  display: flex;
+  padding: 24px 120px 112px 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: $color-background;
+  .CTAband {
+    display: flex;
+    padding: 64px;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+    border-radius: 20px;
+    border-color: 1px solid $color-blue100;
+    background-color: $color-blue50;
+    .CTACopy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      flex: 1 0 0;
+      label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .labelNumber {
+          color: $color-blue600Primary;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 500;
+        }
+        .labelText {
+          color: $color-ink600;
+          font-family: $font-body;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.96px;
+        }
+      }
+      .sectionTitle {
+        align-self: stretch;
+        color: $color-ink900;
+        font-family: $font-main;
+        font-size: 68px;
+        font-weight: 400;
+        line-height: 66.64px;
+        letter-spacing: -1.36px;
+      }
+      .sectionDescp {
+        align-self: stretch;
+        color: $color-ink600;
+        font-family: $font-body;
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 27px;
+      }
+      .perks {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+        gap: 12px;
+        align-self: stretch;
+        .perksFrame {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          .perkIconFrame {
+            display: flex;
+            width: 22px;
+            height: 22px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 999px;
+            background-color: $color-blue100;
+          }
+          .perkText {
+            color: $color-ink600;
+            font-family: $font-body;
+            font-size: 15.5px;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    form {
+      display: flex;
+      width: 440px;
+      padding: 28px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      border-radius: 14px;
+      border: 1px solid $color-border;
+      background-color: #fff;
+      box-shadow: 0 16px 40px 0 rgba(37, 99, 235, 0.1);
+      h3 {
+        align-self: stretch;
+        color: $color-ink900;
+        font-family: $font-body;
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+      }
+      .roleToggle {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 4px;
+        align-items: stretch;
+        gap: 4px;
+        align-self: stretch;
+        border-radius: 999px;
+        background-color: $color-surfaceMuted;
+
+        .roleThumb {
+          position: absolute;
+          top: 4px;
+          bottom: 4px;
+          left: 4px;
+          width: calc(50% - 6px);
+          border-radius: 999px;
+          background-color: #fff;
+          box-shadow: 0 4px 12px 0 rgba(11, 27, 51, 0.08);
+          pointer-events: none;
+          transition: transform 180ms ease;
+        }
+
+        &.proSelected .roleThumb {
+          transform: translateX(calc(100% + 4px));
+        }
+
+        .roleButton {
+          border: none;
+          display: flex;
+          padding: 10px 12px;
+          justify-content: center;
+          align-items: center;
+          min-width: 0;
+          position: relative;
+          z-index: 1;
+          border-radius: 999px;
+          background: transparent;
+          color: $color-ink500;
+          font-family: $font-body;
+          font-size: 14px;
+          font-weight: 600;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: color 180ms ease;
+
+          &.activeRoleButton {
+            color: $color-ink900;
+          }
+        }
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        align-self: stretch;
+        label {
+          display: flex;
+          align-items: flex-start;
+          gap: 6px;
+          color: $color-ink900;
+          font-family: $font-body;
+          font-size: 13px;
+          font-weight: 600;
+        }
+        .inputWrapper {
+          display: flex;
+          height: 50px;
+          padding: 0 18px;
+          align-items: center;
+          gap: 10px;
+          align-self: stretch;
+          border-radius: 999px;
+          border: 1px solid $color-border;
+          background-color: $color-surfaceMuted;
+          transition:
+            border-color 150ms ease,
+            background-color 150ms ease,
+            box-shadow 150ms ease;
+
+          &:focus-within {
+            border-color: $color-blue600Primary;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+          }
+
+          input {
+            min-width: 0;
+            flex: 1 1 auto;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            font-family: $font-body;
+            font-size: 15px;
+            font-weight: 500;
+            color: $color-ink900;
+
+            &::placeholder {
+              color: $color-ink400;
+              opacity: 1;
+            }
+
+            &:focus-visible {
+              outline: none;
+            }
+          }
+        }
+      }
+      .buttonPrimary {
+        display: flex;
+        height: 52px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        align-self: stretch;
+        border-radius: 8px;
+        background-color: $color-blue600Primary;
+        cursor: pointer;
+        border: none;
+        .buttonPrimaryText {
+          color: #fff;
+          font-family: $font-body;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+      .note {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        align-self: stretch;
+        .noteText {
+          color: $color-ink500;
+          font-family: $font-body;
+          font-size: 12.5px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  @include mobile-only {
+    padding: 24px 20px 64px;
+
+    .CTAband {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 24px 20px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 32px;
+      border-radius: 16px;
+
+      .CTACopy {
+        width: 100%;
+        flex: 0 1 auto;
+        gap: 16px;
+
+        .sectionTitle {
+          font-size: 44px;
+          line-height: 1.05;
+          letter-spacing: 0;
+        }
+
+        .sectionDescp {
+          font-size: 16px;
+          line-height: 1.5;
+        }
+
+        .perks {
+          gap: 10px;
+
+          .perksFrame {
+            align-items: flex-start;
+
+            .perkIconFrame {
+              flex: 0 0 22px;
+            }
+
+            .perkText {
+              min-width: 0;
+              font-size: 14px;
+              line-height: 1.45;
+            }
+          }
+        }
+      }
+
+      form {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 20px 16px;
+
+        .roleToggle .roleButton {
+          padding: 10px 4px;
+          font-size: 12px;
+          white-space: normal;
+          text-align: center;
+        }
+
+        .field .inputWrapper {
+          padding-inline: 14px;
+        }
+
+        .note .noteText {
+          font-size: 12px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

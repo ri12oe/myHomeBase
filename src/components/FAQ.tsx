@@ -1,4 +1,4 @@
-import styles from './FAQ.module.scss'
+import style from './FAQ.module.scss'
 import { MessageSquareText, Minus, Plus } from 'lucide-react'
 import { useState } from 'react'
 
@@ -39,51 +39,51 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <main className={styles.faqMain}>
-      <div className={styles.faqHeading}>
+    <main className={style.faqMain}>
+      <div className={style.faqHeading}>
         <label>
-          <span className={styles.labelNumber}>(06)</span>
-          <span className={styles.labelText}>FAQ</span>
+          <span className={style.labelNumber}>(06)</span>
+          <span className={style.labelText}>FAQ</span>
         </label>
-        <h2 className={styles.sectionTitle}>Questions, answered.</h2>
-        <span className={styles.sectionDescp}>
+        <h2 className={style.sectionTitle}>Questions, answered.</h2>
+        <span className={style.sectionDescp}>
           Everything you need to know about early access and how myHomeBase
           works.
         </span>
-        <div className={styles.contactBox}>
-          <div className={styles.buttonFrameIcon}>
+        <div className={style.contactBox}>
+          <div className={style.buttonFrameIcon}>
             <MessageSquareText
               size={20}
               style={{ flexShrink: 0 }}
               color="#1D4ED8"
             />
           </div>
-          <div className={styles.buttonFrame}>
-            <span className={styles.buttonTitle}>Still have questions?</span>
+          <div className={style.buttonFrame}>
+            <span className={style.buttonTitle}>Still have questions?</span>
             <a
               href="mailto:hello@myhomebase.com"
-              className={styles.buttonDescp}
+              className={style.buttonDescp}
             >
               hello@myhomebase.com
             </a>
           </div>
         </div>
       </div>
-      <div className={styles.accordion}>
+      <div className={style.accordion}>
         {faqItems.map((item, index) => {
           const isOpen = openIndex === index
           const answerId = `faq-answer-${index}`
 
           return (
             <div
-              className={isOpen ? styles.FAQItemOpen : styles.FAQItemClosed}
+              className={isOpen ? style.FAQItemOpen : style.FAQItemClosed}
               key={item.question}
             >
-              <div className={styles.itemFrame}>
-                <h3 className={styles.itemTitle}>{item.question}</h3>
+              <div className={style.itemFrame}>
+                <h3 className={style.itemTitle}>{item.question}</h3>
                 <button
                   type="button"
-                  className={styles.itemButton}
+                  className={style.itemButton}
                   aria-label={`${isOpen ? 'Hide' : 'Show'} answer: ${item.question}`}
                   aria-expanded={isOpen}
                   aria-controls={answerId}
@@ -96,7 +96,7 @@ export default function FAQ() {
                   )}
                 </button>
               </div>
-              <p id={answerId} className={styles.itemDescp} hidden={!isOpen}>
+              <p id={answerId} className={style.itemDescp} hidden={!isOpen}>
                 {item.answer}
               </p>
             </div>
